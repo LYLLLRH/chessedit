@@ -1,0 +1,870 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Chess</title>
+
+		<link href="css/bootstrap-slider.css" rel="stylesheet" type="text/css">
+		<link href="css/chessboard-0.css" rel="stylesheet" type="text/css">
+		<link href="css/jasny-bootstrap.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link href="css/chess.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.map">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+		<script src="js/pgnexpansion.js" type="text/javascript"></script>
+		<script src="js/pgnweb.js" type="text/javascript"></script>		
+		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="js/chess.js" type="text/javascript"></script>
+		<script src="js/chessboard-0.js" type="text/javascript"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+
+
+	</head>
+	<body>
+	<div class="toolbar"> <a href="Index.html"><img src="images/logo2.png" title="首页" width="32" height="32" /></a>
+		<img src="images/toolbar00.png"  />
+		<a href="Lessons.html"><img src="images/toolbar01.png" title="学习" width="32" height="32" /></a>
+		<img src="images/toolbar00.png"  />
+		<a href="Game.html"><img src="images/toolbar02.png" title="下棋" width="32" height="32" /></a>
+		<img src="images/toolbar00.png"  />
+		<a href="#"><img src="images/toolbar03.png" title="比赛" width="32" height="32" /></a>
+		<img src="images/toolbar00.png"  />
+		<a href="Blog.html"><img src="images/toolbar04.png" title="用户" width="32" height="32" /></a>
+		<img src="images/toolbar00.png"  />
+		<a href="#"><img src="images/toolbar05.png" title="帮助" width="32" height="32" /></a>
+	</div>
+	<div class="mainbody">
+		<ul>
+			<li><div class="topmenu"><a href="login.html" class="topmunubutton"><span class="glyphicon glyphicon-arrow-left topmunubuttonicon"></span>退出</a><a href="#" class="topmunubutton"><span class="glyphicon glyphicon-cog topmunubuttonicon"></span>管理</a></div></li>
+			<div class="chessposition01" >
+				<div class="chessboardposition">
+				<div class="chessboardmainposition" id="chessboardpostion" style=": 0 3px 7px rgba(0,0,0,0.5);border-radius: 5px 5px 5px 5px;"><img src="images/chessboard1.png" ></div></div>
+			</div>
+		
+			<div class="chessposition02">
+			<div id="setTab" class="">
+				<ul class="tab" role="tablist">
+				
+					<li class="tag01 btn btn-default btn-md"><span><a href="#fentab" target="_self"  data-toggle="tab" onclick="fenInitial()"><i class="fa fa-pencil fa-fw"></i> FEN编辑</a></span>
+					</li>
+					<li class="tag02 active btn btn-default btn-md"><span><a href="#pgntab" target="_self"     data-toggle="tab" onclick="pgnInitial()"><i class="fa fa-magic fa-fw"></i> PGN编辑</a></span>
+					</li>
+					<li class="tag03 btn btn-default btn-md"><span><a href="#testtab" target="_self"  data-toggle="tab"><i class="fa fa-wrench fa-fw"></i> 题目编辑</a></span>
+					</li>				
+					<li class="clear"></li>
+					<li>
+						<div class="tab-content">
+							<div class="tab-pane fade" id="fentab">
+								<div class="positionSet">
+									<ul>
+										<li class="positionFenFirst">
+											<div class="input-group input-group-sm fenInput">
+												<span class="input-group-addon">FEN</span>
+												<input type="text" class="bg-info form-control" id="fenDisplay" value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"></input>
+											</div>
+											<div class="btn-group position1">
+												<button class="btn btn-default btn-md " id="fenUpLoad"><span class="glyphicon glyphicon-cloud-upload"></span> FEN＝>棋盘</button>
+												<button class="btn btn-default btn-md " id="fenDownLoad"><span class="glyphicon glyphicon-cloud-download"></span>　棋盘＝>FEN</button>
+											</div>
+										</li>
+										<li class="clear"></li>
+										<li class="positionFen">
+											<div class="btn-group position2">
+											<button class="btn btn-default btn-lg btnPosition" id="startPosition"><span class="glyphicon glyphicon-play-circle"></span>  开始局面</buttion>
+											<button class="btn btn-default btn-lg btnPosition" id="clearPosition"><span class="glyphicon glyphicon-repeat"></span>  清除局面</buttion>
+											<button class="btn btn-default btn-lg btnPosition" id="flipPosition"><span class="glyphicon glyphicon-retweet"></span>  棋盘反置</buttion>
+											</div>
+										</li>
+										<li class="clear"></li>
+										<li class="positionFen position3">
+											<div class="positionBox">
+												<div class="positionAct">
+												<label> 白方移位 O-O </label>	<input type="checkbox" calss="checkbox" checked="true">
+												<input type="checkbox" checked="true"> <label> 白方移位 O-O-O </label>	<br>
+												<label> 黑方移位 O-O </label>	<input type="checkbox" checked="true">
+												<input type="checkbox" checked="true"> <label> 黑方移位 O-O-O </label>	
+												</div>
+												<div class="positionMove">							
+												<label for="">白方先走</label><input type="radio" checked="checked" name="tempo" value="白方先走"><br>
+												<label for="">黑方先走</label><input type="radio" name="tempo" value="黑方先走" />
+												</div>
+											</div>		
+										</li>
+										<li class="clear"></li>
+										<li>
+											<div class="positionFen positionSearch">
+												<div class="input-group input-group-sm fenInput">
+												<input type="text" class="bg-info form-control" id="fenDisplay" placeholder="开局搜索: E01 或者 意大利 或者 e4 e5 Nf3 Nc6 Bb6"></input>
+												<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search fa-fw"></i> 搜索</button></span>
+												</div>
+											<div class="tblOpen">
+												<ul class="tblHead list-inline">
+													<li class="ecoId">ECO编号</li>
+													<li class="ecoCn">中文名称</li>
+													<li class="ecoEn">英文名称</li>
+												</ul>
+												<div class="tblDiv">
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>
+		<ul class="tblConent list-inline"><li class="ecoId">A01</li><li class="ecoCn">意大利开局</li><li class="ecoEn">Italy Gambit</li></ul>												</div>								
+											</div>
+											<div class="tblPgn"><span>PGN: </span><span>1.e4 e5 2.Nf3 Nc6 3. Bc4</span></div>
+											</div>	
+										</li>
+										<li>
+											<div class="positionFen positionSocial">
+												<div class="btn-group btnConfirm">
+													<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-tower"></span> 挑战电脑</button>
+													<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-user"></span> 挑战朋友</button>
+													<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-share"></span> 分享到博客</button>													
+												</div>
+												<div class="iconSocial" >
+													<span><i class="fa fa-twitter fa-2x fa-fw"></i></span>
+													<span><i class="fa fa-linkedin fa-2x fa-fw"></i></span>
+													<span><i class="fa fa-google-plus fa-2x fa-fw"></i></span>
+													<span><i class="fa fa-facebook fa-2x fa-fw"></i></span>
+												</div>
+												<div class="clear"></div>
+											</div>	
+										</li>
+
+									</ul>
+								</div>
+							</div>
+							<div class="tab-pane fade  in active" id="pgntab">
+								<div class="positionSet">
+									<ul>
+										<li class="positionFenFirst">
+											<div>
+											<div class="txtAreaPgn"  id="pgnArea" tabindex="1" placeholder="PGN">
+											</div>
+											<div class="btn-toolbar" role="toolbar">
+												<div class="btn-group">
+												<button class="btn btn-default btn-md" id="pgnStartPosition" ><span class="glyphicon glyphicon-step-backward" ></span></button>
+												<button class="btn btn-default btn-md" id="pgnStepBackward"><span class="glyphicon glyphicon-chevron-left"></span></button>
+												<button class="btn btn-default btn-md" id="pgnStepForward"><span class="glyphicon glyphicon-chevron-right" ></span></button>
+												<button class="btn btn-default btn-md" id="pgnEndPosition"><span class="glyphicon glyphicon-step-forward"></span></button>
+
+												<form class="pgnloadpopup left" href="#pgnloadpopup"><button class="btn btn-default btn-md"  ><span class="glyphicon glyphicon-cloud-download"></span> 载入PGN</button></form>
+												<form class="pgnupload left" href="#pgnupload">
+												<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-cloud-upload"></span>保存PGN</button>
+												</form>
+												<form class="pgnsavepopup left" href="#pgnsavepopup">
+												<button class="btn btn-default btn-md" id="embedUpload"><span class="glyphicon glyphicon-paperclip"></span>嵌入PGN</button>
+												</form>
+												</div>
+												
+											</div>
+											</div>
+										</li>
+										<li class="clear"></li>
+										<li class="positionFen btn-group">
+												<div class="txtComment">
+													<textarea placeholder="Comment" rows="5" class="txtComment"></textarea>
+												</div>
+												<div class="promotion">
+													<div class="btnPgnPosition">
+														<button class="btn btn-default btn-md" id="moveDel">删除Move</button>
+														<button class="btn btn-default btn-md" id="boardFlip2">棋盘反置</button>
+													</div>
+													<div class="selPromotion">
+														<label>升变:</label>
+														<select name="selPromotion" id="promotion">
+															<option value="q"> 后 Q</option>
+															<option value="r"> 车 R</option>
+															<option value="b"> 象 B</option>
+															<option value="n"> 马 N</option>
+														</select>
+														<label>评估:</label>
+														 <select name="selMoveRate" id="selMoveRate">
+														 	<option value=""></option>
+														 	<option value="!">!</option>
+														 	<option value="!!">!!</option>
+														 	<option value="?">?</option>
+														 	<option value="??">??</option>
+														 	<option value="!?">!?</option>
+														 	<option value="?!">?!</option>
+														 </select>
+													</div>
+												</div>
+										</li>
+										<li class="clear"></li>
+										<li class="positionFenLine">
+											<div>
+												<div class="arrSign input-group input-group-sm ">
+													<span class="input-group-addon">线路</span>
+													<span class="input-group-addon">起点</span>
+													<input type="text" class="form-control" id="posStart">
+													<span class="input-group-addon">终点</span>
+													<input type="text" class="form-control" id="posEnd">
+													<span class="input-group-btn">
+													<button class="btn btn-default" type="button" id="lineDraw">添加</button>
+													<button class="btn btn-default" type="button" id="lineRemove">消除</button>
+													</span>
+												</div>
+												<form class="formColor">
+													<lable class="labelColor">颜色</lable>
+													<select id="color">
+													<option value="brown" class="spColor1">棕色</option>
+													<option value="red" class="spColor2">红色</option>
+													<option value="green" class="spColor3">绿色</option>
+													</select>
+												</form>
+											</div>
+										</li>	
+										<li class="clear"></li>
+										<li class="positionFenLine">
+											<div>
+												<div class="arrSign input-group input-group-sm ">
+													<span class="input-group-addon">高亮</span>
+													<span class="input-group-addon">棋盘位置</span>
+													<input type="text" class="form-control" id="txtColorPos">
+													<span class="input-group-btn">
+													<button class="btn btn-default" type="button" id="btnColorPos">添加</button>
+													<button class="btn btn-default" type="button" id="btnColorRemove">消除</button>
+													</span>
+												</div>
+												<form class="formColor">
+													<lable class="labelColor">颜色</lable>
+													<select id="selColorPos">
+													<option value="b" class="spColor1">蓝色</option>
+													<option value="r" class="spColor2">红色</option>
+													<option value="g" class="spColor3">绿色</option>
+													</select>
+												</form>
+											</div>
+										</li>
+										<li class="clear"></li>
+										<li>
+	
+										</li>
+										<li>
+	
+										</li>
+
+									</ul>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="testtab">
+									<div class="positionSet">
+										<ul>
+											<li class="positionFenFirst">
+												国际象棋题目编辑器
+											</li>
+											<li class="clear"></li>
+											<li class="positionFen btn-group">
+											</li>
+											<li class="clear"></li>
+											<li >
+											</li>
+											<li class="clear"></li>
+											<li>
+											</li>
+											<li>		
+											</li>
+
+										</ul>
+									</div>
+								</div>
+							
+						</div>
+					</li>
+					<li clear="clear"></li>
+				</ul>
+			</div>
+		</div>
+	<li class="clear"></li>
+	<li class="bottom"><a href="#">网站地图</a> ｜ <a href="#">关于我们</a> ｜ <a href="#">联系我们</a> <span class="copyright"> &copy;2014 L&Y Chess 乐亿国际象棋&nbsp;&nbsp;&nbsp;沪ICP备10001010号 </span></li>
+	</ul>
+	</div>
+<div id="pgnloadpopup" class="white-popup mfp-hide">
+  <textarea style="border:1px dotted grey;width:400px;Height:200px;display:block" placeholder="请输入PGN" id="txtPgn" ></textarea>
+  <div style="width:100%"><button class="btn btn-default btn-md popButton" id="closePgnLoad">载入</button></div>
+</div>
+
+<div id="pgnupload" class="white-popup mfp-hide">
+  <div><input type="text" placeholder= "白方 2500 VS 黑方 2500" id="gameplay" style="border: 1px dotted grey; width: 87%; margin-bottom: 10px;"></input></div>
+  <div><input type="text" placeholder=" 英国公开赛 ｜ 2010 ｜ ECO B06 | 1-0" id="gameinfo" style="border: 1px dotted grey; width: 87%; margin-bottom: 10px;"></input></div>
+  <textarea style="border:1px dotted grey;width:400px;Height:200px;display:block" placeholder="" id="txtuploadPgn"></textarea>
+  	<div style = "border: 1px dotted grey;margin-top: 10px;width:87%" id="embedUpload" >嵌入PGN的链接地址</div>
+	<button style = "margin-top: 10px;" class="btn btn-default btn-md" id="btnUploadPgn">上传PGN</button>
+</div>
+
+<div id="pgnsavepopup" class="white-popup mfp-hide">
+  <textarea style="border:1px dotted grey;width:400px;Height:200px;display:block" placeholder="" id="txtSavePgn"></textarea>
+ 
+</div>
+
+
+<div id="moveSelect" class="moveSelectPop mfp-hide" tabindex="-1">
+<div id="movesPop" tabindex="-1">
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var cfg = {
+        draggable: true,
+        position: 'start',
+        onDragStart: onPgnDragStart,
+        onDrop: onPgnDrop,
+        onSnapEnd: onPgnSnapEnd,
+        sparePieces: true
+    };
+
+    var board = new ChessBoard('chessboardpostion', cfg);
+	var $aa = $("#chessboardpostion");
+    var chess = new Chess();
+    var fens = {};
+    var lines = [];
+    var posColors = [];
+	var pgnStr;
+	var pgn = new pgnParse();
+	var cursorCur = [0];
+	var moves = []
+	,pgnmove = {};
+	
+
+
+    $("#clearPosition").click(function(event) {
+        board.clear(true);
+    });
+
+    $("#startPosition").click(function(event) {
+        board.start(true);
+    });
+
+    $("#flipPosition,#boardFlip2").click(function(event) {
+        board.flip();
+    });
+
+    $("#fenUpLoad").click(function(event) {
+        board.position($("#fenDisplay").val());
+    });
+
+    // PGN Button Action Beign
+    $("#pgnEndPosition").click(function(event) {
+        endPosition();
+    });
+    $("#pgnStartPosition").click(function(event) {
+        startPosition();
+    });
+    $("#pgnStepForward").click(function(event) {
+        stepFoward();
+    });
+    $("#pgnStepBackward").click(function(event) {
+        stepBack();
+    });
+    // PGN	Buttton Action End
+
+
+	
+	$("#moveDel").click(function(){
+		cursorCur = objDelNode(moves,cursorCur);
+		$(".txtAreaPgn").html(obj2Html(moves,1));
+		$(".txtAreaPgn>a").bind("click",function(e){
+			cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
+			boardRefresh(board,$aa,moves,cursorCur);
+			chessRefresh(chess,obj2Fen(moves,cursorCur));
+			pgnHilightChange($aa,cursorCur,1)
+		});
+		initialStat:us(obj2Pgn(moves));
+		boardRefresh(board,$aa,moves,cursorCur);
+		chessRefresh(chess,obj2Fen(moves,cursorCur));
+		pgnHilightChange($aa,cursorCur,1);
+
+		
+	});
+	
+    addComment = function() {
+        if (cursorCur[0] == 0) {
+            return false;
+        } 
+		
+		var comment = $("textarea.txtComment").val();
+
+		updateObjComm(moves,cursorCur,comment);
+		$(".txtAreaPgn").html(obj2Html(moves,1));
+		$(".txtAreaPgn>a").bind("click",function(e){
+			cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
+			boardRefresh(board,$aa,moves,cursorCur);
+						chessRefresh(chess,obj2Fen(moves,cursorCur));
+			pgnHilightChange($aa,cursorCur,1)
+		});
+		boardRefresh(board,$aa,moves,cursorCur);
+					chessRefresh(chess,obj2Fen(moves,cursorCur));
+		pgnHilightChange($aa,cursorCur,1);
+    }
+
+    $("textarea.txtComment").bind("focusout", addComment);
+	
+    function getOddMove(moveNum) {
+        return moveNum % 2 ? (moveNum + 1) / 2 : 0;
+
+    }
+
+	
+	addMoveRate = function(){
+		if (cursorCur[0] == 0) {
+            return false;
+        } 
+		var rate = $("#selMoveRate").val();
+		updateObjRate(moves,cursorCur,rate);	
+		updateHtmlRate($(".txtAreaPgn"),cursorCur,rate);
+	}
+	
+
+
+    $("#selMoveRate").bind("click", addMoveRate);
+    $("#selMoveRate").bind("change", addMoveRate);
+
+    // Rate End
+    $("#fenDownLoad").click(function(event) {
+		if ( moves && cursorCur[0]!=0 && obj2Fen(moves,cursorCur).length != 0 && obj2Fen(moves,cursorCur).split(/\s+/)[0] == board.fen()) {
+        $("#fenDisplay").val(chess.fen());
+		} else {
+		$("#fenDisplay").val(board.fen());
+		}
+    });
+
+    $('.pgnloadpopup').magnificPopup({
+        type: 'inline',
+        callbacks: {
+            open: function() {
+                //   				console.log('Popup is opened');
+            },
+
+            afterClose: function() {
+                $("#txtPgn").val("");
+				if  (!initialStatus(pgnStr)) {
+					$(".txtAreaPgn").html("格式有错误，请重新输入！");
+				}
+            }
+        }		
+    });
+
+    $('.pgnsavepopup').magnificPopup({
+        type: 'inline',
+        callbacks: {
+            open: function() {
+                //   				console.log('Popup is opened');
+                if (moves && moves.length != 0) {
+				$("#txtSavePgn").val(obj2PgnStandard(moves));
+				}
+            },
+
+        }		
+    });
+	
+	$('.pgnupload').magnificPopup({
+        type: 'inline',
+        callbacks: {
+            open: function() {
+                //   				console.log('Popup is opened');
+				if (moves && moves.length != 0) {
+				$("#txtuploadPgn").val(obj2Pgn(moves));
+				}
+				$("#btnUploadPgn").removeAttr('disabled');	
+            },
+		}		
+    });
+
+    $("#closePgnLoad").click(function(event) {
+		pgnStr = $("#txtPgn").val();
+        $.magnificPopup.close();
+    });
+
+	
+    // LineDraw	Start
+    $("#lineDraw,#lineRemove").click(function(event) {
+        var start = $("#posStart").val().toLowerCase(),
+            end = $("#posEnd").val().toLowerCase(),
+            color = $("#color").val();
+        if (start == end) {
+            alert("开始和结束位置不能相同");
+            return;
+        }
+		if (checkPositionValid(start) && checkPositionValid(end)) {
+			var line = start+":"+end+":"+color.charAt(0);
+			var flag = (this.id=="lineDraw")?true:false;
+			updateObjLine(moves,cursorCur,line,flag); // flag equal false means delete;
+			boardRefresh(board, $aa, moves, cursorCur);	
+		}		
+    });
+
+	
+    $("#btnColorPos,#btnColorRemove").click(function() {
+        var pos = $("#txtColorPos").val().toLowerCase(),
+            color = $("#selColorPos").val();
+        if (checkPositionValid(pos)) {
+			var cell = pos+":"+color.charAt(0);
+			var flag = (this.id=="btnColorPos")?true:false;
+			updateObjCell(moves,cursorCur,cell,flag);
+			boardRefresh(board,$aa,moves,cursorCur);
+		}
+    });
+
+    // Position Color End
+    // Chessborad & Chess.js 
+    function onPgnDragStart(source, piece, position, orientation) {
+        //check tag02 or tag03 是否为active ,或者tag01 active ,但是符合走棋的规则
+        if (!checkEnforcLegalMove()) {
+            return false;
+        }
+
+        if (chess.game_over() === true ||
+            (chess.turn() === 'w' && piece.search(/^b/) !== -1) ||
+            (chess.turn() === 'b' && piece.search(/^w/) !== -1)) {
+            return false;
+        }
+    };
+
+
+    function onPgnDrop(source, target) {
+        //check tag02 or tag03 是否为active ,或者tag01 active ,但是符合走棋的规则
+        if (!checkEnforcLegalMove()) {
+            return false;
+        }
+
+        // see if the move is legal
+        var move = chess.move({
+            from: source,
+            to: target,
+            promotion: $("#promotion").val()
+        });
+
+        // illegal move
+        if (move === null) return 'snapback';
+        updateStatus(move);
+    };
+
+    function onPgnSnapEnd() {
+        //check tag02 or tag03 是否为active ,或者tag01 active ,但是符合走棋的规则
+        if (!checkEnforcLegalMove()) {
+            return false;
+        }
+		boardRefresh(board,$aa,moves,cursorCur);
+		pgnHilightChange($aa,cursorCur,1);
+		
+	 // updateStatus(move);
+    };
+
+    function checkEnforcLegalMove() {
+        return !$(".tag01").hasClass("active");
+    }
+
+    var updateStatus = function(move) {
+        var status = '';
+        var moveColor = 'White';
+        if (chess.turn() === 'b') {
+            moveColor = 'Black';
+        }
+        // checkmate?
+        if (chess.in_checkmate() === true) {
+//            console.log('Game over, ' + moveColor + ' is in checkmate.');
+			alert("Checkmate!");
+        }
+        else if (chess.in_draw() === true) {
+            console.log('Game over, drawn position');
+        }
+        else {
+            console.log(moveColor + ' to move');
+            // check?
+            if (chess.in_check() === true) {
+                console.log(', ' + moveColor + ' is in check');
+            }
+        }
+ //       $(".txtAreaPgn").html(game.pgn());
+		if ( (cursor = checkMoveExisting(moves,cursorCur,chess.fen()))) { // the next move is already here so no change happens
+			
+			cursorCur = cursor;	
+//			boardRefresh(board,$aa,moves,cursorCur);
+//			pgnHilightChange($aa,cursorCur,1);
+		} else {  // new Move, chaneg moves,pgn,html, re-bind the move's click,
+			cursorCur = objAddNode(moves,cursorCur,move);
+			initialStatus(obj2Pgn(moves));
+//		    boardRefresh(board,$aa,moves,cursorCur);
+			chessRefresh(chess,obj2Fen(moves,cursorCur));	
+//			pgnHilightChange($aa,cursorCur,1);		
+		}
+
+    };
+
+	function objAddNode(moves,cursorCur,move) {
+	//add san/fen/oid
+	// Add in last queue;
+	// Add in a Rav 
+		if ( moves.length == 0 ) {
+			moves.push ({fen:chess.fen(),oid:"1",san:move.san});
+			return [1];
+		}
+		if ( !curForward(moves,cursorCur)) {
+			var node = obj2ParentNode(moves,cursorCur);
+			cursorCur[cursorCur.length-1] += 1;
+			node.push({fen:chess.fen(),oid:cursorCur.join("-"),san:move.san});
+			return cursorCur;
+		} else {
+			var node = obj2Node(moves,cursorCur);
+	//		moves = pgn.parse(obj2Pgn).movetext.moves;
+			if(node.rav) {
+				node.rav.push([{fen:chess.fen(),oid:cursorCur.join("-"),san:move.san}]);
+				cursorCur.push(node.rav.length,1);
+			} else {
+				var newRav = {}
+				newRav = new Array();
+				newRav.push([{fen:chess.fen(),oid:cursorCur.join("-"),san:move.san}]);
+				node.rav = newRav;
+				cursorCur.push(1,1);
+			}
+			return cursorCur;
+		}
+	}
+	
+	
+	function checkMoveExisting(moves,cursorCur,fen) {
+		// cursorCur is the last move ,return false;
+		// else get all next moves direct + rav[0][0] + rav[0][0]  pay attention to judge rav[0][0]'s length;
+		var cursor = cursorCur.slice(0);
+		if (!(cursorCur = curForward(moves,cursor))) { return false;}
+		node = obj2Node(moves,cursorCur);
+		if ( node.fen == fen) { return cursorCur;}
+		if (node.rav) {
+			for (var i=0;i<=node.rav.length-1;i++){
+				if (node.rav[i][0].fen == fen) { 
+					cursorCur.push(i+1,1);
+					return cursorCur;
+				}
+			} 
+		}
+		return false;
+	}
+	
+	function chessRefresh(chess,fen){
+		chess.load(fen);
+	}
+
+    function stepFoward() {
+      var cur;
+      if (!(cur =curForward(moves,cursorCur))) {
+        return false;
+      } 
+	if ( getMultiMoves(moves,cur).length>1) { 
+		$.magnificPopup.open({
+			items: {src: '#moveSelect',
+			},
+			type: 'inline',
+			alignTop: true,
+			fixedContentPos: false,
+			fixedBgPos: true,
+			callbacks: { 
+				open: function () { 
+	//				console.log('Popup Opened',$.magnificPopup.instance);
+					var multiMoves = getMultiMoves(moves,cur);
+//					if ( multiMoves.length >1 ) {
+						var html = "<ul><li class=\"moveUl selected\" id=\"m1\">1. " + multiMoves[0] + "</li>";
+						for (var i=1;i<multiMoves.length;i++) {
+							html += "<li class=\"moveUl\" id=\"m" + (i+1) +"\">"+(i+1)+". "+ multiMoves[i] +"</li>";
+						}
+						html += "</ul>"; 
+						$("#movesPop").html(html);
+						$(".moveUl").on("click",function(){
+							$("#movesPop").find(".selected").removeClass("selected");
+							$("#movesPop").find("#m"+this.id.split("m")[1]).addClass("selected");
+						});
+						$(".moveUl").on("dblclick",function(){
+						$("#movesPop").find(".selected").removeClass("selected");
+						$("#movesPop").find("#m"+this.id.split("m")[1]).addClass("selected");
+						$.magnificPopup.close();
+						});
+//					}
+				},
+				close: function(){
+					var num = parseInt($("#movesPop").find(".selected")[0].id.split("m")[1]);
+					if ( num > 1) {
+					cur.push(num-1,1);
+					}
+					cursorCur = cur;
+					boardRefresh(board,$aa,moves,cursorCur);
+					chessRefresh(chess,obj2Fen(moves,cursorCur));	  
+					pgnHilightChange($aa,cursorCur,1);
+				}	
+			},
+			focus: "#movesPop",
+			modal: true
+		});
+	} else {
+		cursorCur = cur;
+		boardRefresh(board,$aa,moves,cursorCur);
+		chessRefresh(chess,obj2Fen(moves,cursorCur));	  
+		pgnHilightChange($aa,cursorCur,1);
+	}
+    };
+
+	function getMultiMoves(moves,cursorCur) {
+		var cursor = cursorCur.slice(0)
+			,node
+			multiMoves = [];
+			node = obj2Node(moves,cursor);
+			multiMoves.push(node.san);
+		if ( node=obj2Node(moves,cursor).rav ) { 
+			node.forEach(function(rav){
+			multiMoves.push(rav[0].san);
+			});
+		}
+		return multiMoves;
+	}
+	
+    function stepBack() {
+      var cur;
+      if (!(cur =curBackward(moves,cursorCur)) || cur[0]==0) {
+		cursorCur = [0];
+        pgnHilightChange($aa,cursorCur,0);
+        boardRefresh(board,$aa,moves,[0]);
+		chessRefresh(chess,obj2Fen(moves,cursorCur));		
+         return false;
+      } 
+      cursorCur = cur;
+      boardRefresh(board,$aa,moves,cursorCur);
+	chessRefresh(chess,obj2Fen(moves,cursorCur));  
+     pgnHilightChange($aa,cursorCur,1);
+    };
+
+    function startPosition() {
+		 cursorCur = {};
+		 cursorCur = [0];
+		 boardRefresh(board,$aa,moves,cursorCur);
+		 chessRefresh(chess,obj2Fen(moves,cursorCur));		 
+		 pgnHilightChange($aa,cursorCur,0);
+    };
+
+    function endPosition() {
+		cursorCur =  {};
+		cursorCur = [moves.length];
+		boardRefresh(board,$aa,moves,cursorCur);
+					chessRefresh(chess,obj2Fen(moves,cursorCur));
+		pgnHilightChange($aa,cursorCur,1);		
+    };
+
+	function initialStatus(pgnStr) {
+		if  ( (!pgnStr.match(/^\s+$/)) && (pgnmove = pgn.parse(pgnStr))  ) {
+			moves = pgnmove.movetext.moves;
+			var fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+			objAddFens(moves || [],fen ,function (ply,fen) {
+				if (!fen) {console.log("fen is empty")}
+					else { chess.load(fen)};
+				var san = ply.san.split(" ")[0];
+				chess.move(san);
+				ply.fen = chess.fen();
+				var mm = chess.history({verbose:true}).pop();
+				ply.mm = {'from':mm.from || '','to':mm.to || ''};
+				// console.log(ply.mm);
+			});
+
+			objAddOids(moves);
+			$(".txtAreaPgn").html(obj2Html(moves,1));
+			$(".txtAreaPgn>a").bind("click",function(e){
+				cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
+				console.log("c:before"+cursorCur);
+				boardRefresh(board,$aa,moves,cursorCur);
+				chessRefresh(chess,obj2Fen(moves,cursorCur));
+				pgnHilightChange($aa,cursorCur,1)
+			
+			});
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+ //   document.onkeydown = function(e) {
+	$("#pgnArea").on('keydown', function(e) {
+		
+		e.preventDefault();
+        if (e.keyCode == 39) { //right arrow
+            stepFoward();
+        } else if (e.keyCode === 37) { // Left
+            stepBack();
+        } else if (e.keyCode === 38) { //up
+            startPosition();
+        } else if (e.keyCode === 40) { //down
+            endPosition();
+        }
+    });
+
+	$("#movesPop").on('keydown', function(e) {
+		e.preventDefault();
+		if (e.keyCode == 39) { //right arrow
+			$.magnificPopup.close();
+		}  else if (e.keyCode === 38) { //up
+ //          upList(); getselecteditem => id number, if not first ,moveup
+			var num = parseInt($("#movesPop").find(".selected")[0].id.split("m")[1]);
+			if (num>1) {
+				$("#movesPop").find("#m"+num).removeClass("selected");
+				$("#movesPop").find("#m"+(num-1)).addClass("selected");
+			}
+			
+        } else if (e.keyCode === 40) { //down
+ //          downList();
+ //			getselecteditem => id number, if not last ,movedown
+			var num = parseInt($("#movesPop").find(".selected")[0].id.split("m")[1]);
+			var totalNum = $("#movesPop .moveUl").length;
+			if (num<totalNum) {
+				$("#movesPop").find("#m"+num).removeClass("selected");
+				$("#movesPop").find("#m"+(num+1)).addClass("selected");
+			}
+        }
+	});
+	
+	//ajax add pgn to server;
+
+	$("#btnUploadPgn").click(function(e){
+
+		e.preventDefault();
+		$.post('/pgn/add', 
+			{ 
+				gameplay:$("#gameplay").val() , 
+				gameinfo:$("#gameinfo").val(),
+				pgn: obj2Pgn(moves)
+			} ,
+			function(data){
+				$("#embedUpload").text(data);
+				$("#btnUploadPgn").attr('disabled',"true");
+			});
+
+		
+	});	
+	//ajax get pgn from server;
+	//
+	
+	
+
+	
+    pgn1 = ['[Event "Blitz:15+10"]',
+        '',
+        '1. e4 e5 {good move}	 2. Nf3 Nc6 3. Bb5 d5 4. O-O dxe4 5. d4 exd4 6.Ne5 ',
+        'e3 7. f3 e2 8. f4 exd1=Q 9. f5 g5 10. fxg6 Qg5 11. Bf4 Bf5',
+        '12. h4 O-O-O 13.g4 Qgxg4+ 14. Kh1 Qxf1+ 15. Kh2 Qfg2# 0-1'
+    ];
+	pgn2 = '[Event "?"] [Site "?"] [Date "2014.04.10"] [Round "?"] [White "?"] [Black "?"] [Result "1-0"] [ECO "C54"] [Annotator "Doe,John"] [PlyCount "41"] [EventDate "2014.??.??"] [SourceDate "2014.04.10"]  1. e4 ?? e5 $1 2. Nf3 $2 {Good} {[%position c4:g]} {[%line a1:b2:r]} {[%position c5:r]} {[%line a2:h7:r]}  Nc6 $3 3. Bc4 $47 Bc5 4. c3 Nf6 5. d4 (5.d3 d6 6. Bb3 a6 7. O-O Ba7 8. Nbd2 O-O) exd4 6. cxd4 Bb4+ 7. Nc3 $6 {并非很好的选择，却给黑棋设下了一个陷阱} (7. Bd2 Bxd2+ 8.Nbxd2 d5 9. exd5 Nxd5 10. Qb3) Nxe4 {利用牵制战术吃得一兵} 8. O-O Nxc3 $2 {忽视了己方出子过慢的缺陷，此时正确的走法应该是 8...Bc3 9.bc d5!巩固了e4的马不会受到白车牵制战术的攻击，畅通了象路，接着就赶紧短易位保证王的安全} 9. bxc3 Bxc3 10. Ba3 $1 {黑棋贪兵的恶果显现出来，白方控制了a3-f8的斜线限制黑棋易位，吹响了进攻的号角} d6 {无奈的选择，必须要遮住来自a3象的控制，不然无法防范白棋e线的打将，糟糕的是10...Ba1 11.Re1+黑棋无法避免失后，丢子告负} 11. Rc1 Ba5 12. Qa4 {双重威胁，欲利用牵制战术挺进d5吃死c6马，也暗藏了驱赶c6马后吃a5象} a6  {绝望的挣扎，其他走法均无法抵挡白棋的双重威胁，必失子告负，现在黑棋暗藏b5的杀手锏意图扭转乾坤} 13. Bd5 $1 {巧妙地避开对方的反击，威胁吃c6马后再吃a5象} Bb6 14. Rxc6 $1 Bd7 {14...bc将遭遇到白棋15.Qc6+再抽吃a8车，白棋多子胜定} 15. Re1+ Kf8 16.Rxd6 $3 {弃后弃车的妙手！强行打开a3-f8的象路让黑格象投入战斗，一环接一环的压迫式进攻已让黑棋应接不暇，现在白棋给予黑棋致命一击} cxd6 {若吃皇后16...Ba4将遭遇白棋17.Rd8+双将杀王} 17. Bxd6+ Kg8 18. Bxf7+ $1 {又一强力击，弃象打破黑棋最后的屏障，请对方老王出宫} Kxf7 19. Ne5+ Ke6 20.Qc4+ Kxd6 {[%arrow a3|c5][%command2 operand2]} 21. Nf7# {连珠妙手，一气呵成，实乃弃子攻杀的佳作} 1-0';
+	pgn3 = '1.e4 ?? e5 $1 2.Nf3 (2. Nc3) 2... Nc6 ?! {Good Move} {[%line b2:c4:g]} {[%position b1:g]} 3. Bb5 {Good Move} 3... a6 !! (3... Nf6 $1 ) (3... Nb8 O-O) 4. Ba4 $30 (4. Bxc6 dxc6 ( 4... bxc6)) 4... b5 5. Bb3 Nf6 6. O-O *';
+  // $("#txtPgn").val(pgn1.join("\n"));
+   $("#txtPgn").val(pgn2);
+  //$("#txtPgn").val(pgn3);
+
+});
+</script>
+<script src="js/pgnedit.js"></script>
+<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+</body>
+</html>
