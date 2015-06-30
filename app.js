@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
-var pgnadd = require('./routes/pgnadd');
-var pgnget = require('./routes/get');
+// var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
+ var pgnadd = require('./routes/pgnadd');
+// var pgnget = require('./routes/pgnget');
 
 
 var app = express();
@@ -27,17 +27,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.post('/pgn/add',pgnadd);
+// app.use('/pgn/:id',pgnget);
+// app.use('/html/:id',chesswidget);
 
 app.get('/user/:id', function (req, res, next) {
   console.log(req.params.id);
   if (!req.params.id) { next();} else { res.end(req.params.id);}
 });
 
-app.post('/pgn/add',function (req,res) {
-  var body ='';
-  console.log(req.body.pgn);
-  res.end("http://www.lychess.net/html/2015063001");
-});
+// app.post('/pgn/add',function (req,res) {
+//   var body ='';
+//   console.log(req.body.pgn);
+//   res.end("http://www.lychess.net/html/2015063001");
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
