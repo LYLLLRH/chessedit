@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-// var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
+var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
  var pgnadd = require('./routes/pgnadd');
 // var pgnget = require('./routes/pgnget');
 
@@ -29,7 +29,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.post('/pgn/add',pgnadd);
 // app.use('/pgn/:id',pgnget);
-// app.use('/html/:id',chesswidget);
+app.get('/h/:id',chesswidget);
 
 app.get('/user/:id', function (req, res, next) {
   console.log(req.params.id);

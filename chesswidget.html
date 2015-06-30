@@ -1,198 +1,12 @@
 
-<!doctype html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Chess</title>
 
-	<link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-	<link href="css/chessboard-0.css" rel="stylesheet" type="text/css">
-	<script src="js/pgnexpansion.js" type="text/javascript"></script>
-
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-
-	<script src="js/chessboard-0.js" type="text/javascript"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-
-	<style>
-		* {
-			margin: 0px;
-			padding: 0px;
-			font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
-		}
-		a ,i {
-			cursor :pointer;
-		}
-
-		.mainboard{
-			width: 562px;
-			height: 449px;
-			position: relative;
-
-		}
-
-		.gamehead {
-			width: 562px;
-			height: 54px;
-			background: #f3f3f3
-
-		}
-
-		.gameuser {
-			margin-bottom: 2px;
-			font-weight: bold;
-			padding: 11px 14px;
-			padding-bottom: 0px;
-			font-size: 14px;
-		}
-		.gameinfo{
-			padding-left: 14px;
-			font-size: 12px;
-		}
-
-		.board{
-			width: 360px;
-			height: 360px;
-			float: left;
-			background: #f3f3f3
-
-
-		}
-		.moves{
-			width: 196px;
-			height: 360px;
-			margin-left: -5px;
-			float: right;
-			border-right: 2px solid #f3f3f3;
-
-		}
-		.moving{
-			width:562px;
-			height: 35px;
-			background: #f3f3f3
-
-		}
-
-		.movingleft{
-			width: 360px;
-			height: 35px;
-			float: left;
-		}
-
-		.movingright {
-			widows: 196px;
-			height: 35px;
-			float: right;
-		}
-
-
-		.clear {
-			clear:both;
-		}
-
-		.txtAreaPgn {
-			height: 360px;
-			overflow: auto;
-			font-size: 14px;
-			line-height: 22px;
-			outline: none;
-		}
-
-		.moveBut {
-			float: left;
-			width: 39px;
-			padding-top:10px;
-
-		}
-
-
-		.moveHilight 
-		{	background: yellow;
-			color:#00f;
-		}
-
-		span.comment,span.rate{ 
-			background: #eeeeee;font-style: italic;font-weight: bolder;font-szie:11px;
-		}
-		.posHighlight_g {
-			background : radial-gradient(ellipse at center center , rgba(155, 199, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
-
-		.posHighlight_r {
-			background : radial-gradient(ellipse at center center , rgba(255, 0, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
-
-		.posHighlight_b {
-			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
-
-		.moveSelectPop { 
-
-			position: relative;
-			background: #FFF;
-			max-width: 500px;
-			margin: 20px auto;
-			box-shadow: 0px 1px 2px 3px grey;
-			width: 150px;
-
-		}
-		.moveSelectPop  .selected {background: #eee;}
-		.moveUl:hover {cursor: pointer;}
-
-	</style>
-</head>
-<body>
-	<div class="mainboard">
-		<div class="gamehead">
-			<div class="gameuser" id="gameuser"></div>
-			<div class="gameinfo" id="gameinfo"></div>
-		</div>
-		<div class="board" id="board"></div>
-		<div class="moves">
-			<div class="txtAreaPgn" id="pgnArea"  tabindex="1" placeholder="PGN"> 1. <a id="1">e4 ?? </a>  <a id="2">e5 </a>$1 2. <a id="3">Nf3 </a>$2 <br><span class="comment">Good </span><br>2... <a id="4">Nc6 </a>$3 3. <a id="5">Bc4 </a>$47 3... <a id="6">Bc5 </a> 4. <a id="7">c3 </a>  <a class="moveselect" id="8">Nf6 </a> 5. <a id="9">d4 </a>  ( 5. <a id="9-1-1">d3 </a>  <a id="9-1-2">d6 </a> 6. <a id="9-1-3">Bb3 </a>  <a id="9-1-4">a6 </a> 7. <a id="9-1-5">O-O </a>  <a id="9-1-6">Ba7 </a> 8. <a id="9-1-7">Nbd2 </a>  <a id="9-1-8">O-O </a>  ) 5... <a id="10">exd4 </a> 6. <a id="11">cxd4 </a>  <a class="moveselect" id="12">Bb4+ </a> 7. <a id="13">Nc3 </a>$6 <br><span class="comment">并非很好的选择，却给黑棋设下了一个陷阱 </span><br> ( 7. <a id="13-1-1">Bd2 </a>  <a id="13-1-2">Bxd2+ </a> 8. <a id="13-1-3">Nbxd2 </a>  <a id="13-1-4">d5 </a> 9. <a id="13-1-5">exd5 </a>  <a id="13-1-6">Nxd5 </a> 10. <a id="13-1-7">Qb3 </a>  ) 7... <a id="14">Nxe4 </a> <br><span class="comment">利用牵制战术吃得一兵 </span><br>8. <a id="15">O-O </a>  </div>
-		</div>
-		<div class="moving clear">
-			<div class="movingleft">
-				<div style="float:right;margin-right:10px;padding-top:8px" id="pgnflip"><i class="fa fa-fw fa-retweet"></i></div>
-			</div>
-			<div class="movingright">
-				<div class="moveBut" id="pgnStartPosition"><i class="fa fa-step-backward fa-fw"></i></div>
-				<div class="moveBut" id="pgnStepBackward"><i class="fa fa-backward fa-fw"></i></div>
-				<div class="moveBut" id="pgnAutoMove"><i class="fa fa-play fa-fw"></i></div>
-				<div class="moveBut" id="pgnStepForward"><i class="fa fa-forward fa-fw"></i></div>
-				<div class="moveBut" id="pgnEndPosition"><i class="fa fa-step-forward fa-fw"></i></div>
-			</div>
-		</div>
-	</div>
-	<div id="moveSelect" class="moveSelectPop mfp-hide" tabindex="-1">
-		<div id="movesPop" tabindex="-1">
-		</div>
-	</div>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var cfg = {
-				draggable: false,
-				position: 'start',
-				sparePieces: false
-			};
-
-			var board = new ChessBoard('board', 'start');
-			var $aa = $("#board");
-
-			var cursorCur = [0];
-			var moves = [];
-
-			var timer,autoMove = false;
-			var gameuser="白方 vs  黑方",gameinfo="对局";
-	$("#gameuser").text ('白方(2010) VS 黑方(2000)');   // 需要在服务器端设置
-	$("#gameinfo").text ('英国 | 2015 5月 | 奥林匹克锦标赛'); // 需要在服务器端设置
+			//// Second Half
+	$("#gameuser").text (game.gameplay);   // 需要在服务器端设置
+	$("#gameinfo").text (game.gameinfo); // 需要在服务器端设置
 	// strObj 需要在服务器端设置
-	var strObj = '[{"san":"e4 ??","fen":"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1","mm":{"from":"e2","to":"e4"},"oid":"1"},{"nag":["$1"],"san":"e5","fen":"rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2","mm":{"from":"e7","to":"e5"},"oid":"2"},{"nag":["$2"],"comments":["Good","[%position c4:g]","[%line a1:b2:r]","[%position c5:r]","[%line a2:h7:r]"],"san":"Nf3","fen":"rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2","mm":{"from":"g1","to":"f3"},"oid":"3"},{"nag":["$3"],"san":"Nc6","fen":"r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3","mm":{"from":"b8","to":"c6"},"oid":"4"},{"nag":["$47"],"san":"Bc4","fen":"r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3","mm":{"from":"f1","to":"c4"},"oid":"5"},{"san":"Bc5","fen":"r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4","mm":{"from":"f8","to":"c5"},"oid":"6"},{"san":"c3","fen":"r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/2P2N2/PP1P1PPP/RNBQK2R b KQkq - 0 4","mm":{"from":"c2","to":"c3"},"oid":"7"},{"san":"Nf6","fen":"r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2P2N2/PP1P1PPP/RNBQK2R w KQkq - 1 5","mm":{"from":"g8","to":"f6"},"oid":"8"},{"rav":[[{"san":"d3","fen":"r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQK2R b KQkq - 0 5","mm":{"from":"d2","to":"d3"},"oid":"9-1-1"},{"san":"d6","fen":"r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQK2R w KQkq - 0 6","mm":{"from":"d7","to":"d6"},"oid":"9-1-2"},{"san":"Bb3","fen":"r1bqk2r/ppp2ppp/2np1n2/2b1p3/4P3/1BPP1N2/PP3PPP/RNBQK2R b KQkq - 1 6","mm":{"from":"c4","to":"b3"},"oid":"9-1-3"},{"san":"a6","fen":"r1bqk2r/1pp2ppp/p1np1n2/2b1p3/4P3/1BPP1N2/PP3PPP/RNBQK2R w KQkq - 0 7","mm":{"from":"a7","to":"a6"},"oid":"9-1-4"},{"san":"O-O","fen":"r1bqk2r/1pp2ppp/p1np1n2/2b1p3/4P3/1BPP1N2/PP3PPP/RNBQ1RK1 b kq - 1 7","mm":{"from":"e1","to":"g1"},"oid":"9-1-5"},{"san":"Ba7","fen":"r1bqk2r/bpp2ppp/p1np1n2/4p3/4P3/1BPP1N2/PP3PPP/RNBQ1RK1 w kq - 2 8","mm":{"from":"c5","to":"a7"},"oid":"9-1-6"},{"san":"Nbd2","fen":"r1bqk2r/bpp2ppp/p1np1n2/4p3/4P3/1BPP1N2/PP1N1PPP/R1BQ1RK1 b kq - 3 8","mm":{"from":"b1","to":"d2"},"oid":"9-1-7"},{"san":"O-O","fen":"r1bq1rk1/bpp2ppp/p1np1n2/4p3/4P3/1BPP1N2/PP1N1PPP/R1BQ1RK1 w - - 4 9","mm":{"from":"e8","to":"g8"},"oid":"9-1-8"}]],"san":"d4","fen":"r1bqk2r/pppp1ppp/2n2n2/2b1p3/2BPP3/2P2N2/PP3PPP/RNBQK2R b KQkq d3 0 5","mm":{"from":"d2","to":"d4"},"oid":"9"},{"san":"exd4","fen":"r1bqk2r/pppp1ppp/2n2n2/2b5/2BpP3/2P2N2/PP3PPP/RNBQK2R w KQkq - 0 6","mm":{"from":"e5","to":"d4"},"oid":"10"},{"san":"cxd4","fen":"r1bqk2r/pppp1ppp/2n2n2/2b5/2BPP3/5N2/PP3PPP/RNBQK2R b KQkq - 0 6","mm":{"from":"c3","to":"d4"},"oid":"11"},{"san":"Bb4+","fen":"r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/5N2/PP3PPP/RNBQK2R w KQkq - 1 7","mm":{"from":"c5","to":"b4"},"oid":"12"},{"nag":["$6"],"comments":["并非很好的选择，却给黑棋设下了一个陷阱"],"rav":[[{"san":"Bd2","fen":"r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/5N2/PP1B1PPP/RN1QK2R b KQkq - 2 7","mm":{"from":"c1","to":"d2"},"oid":"13-1-1"},{"san":"Bxd2+","fen":"r1bqk2r/pppp1ppp/2n2n2/8/2BPP3/5N2/PP1b1PPP/RN1QK2R w KQkq - 0 8","mm":{"from":"b4","to":"d2"},"oid":"13-1-2"},{"san":"Nbxd2","fen":"r1bqk2r/pppp1ppp/2n2n2/8/2BPP3/5N2/PP1N1PPP/R2QK2R b KQkq - 0 8","mm":{"from":"b1","to":"d2"},"oid":"13-1-3"},{"san":"d5","fen":"r1bqk2r/ppp2ppp/2n2n2/3p4/2BPP3/5N2/PP1N1PPP/R2QK2R w KQkq d6 0 9","mm":{"from":"d7","to":"d5"},"oid":"13-1-4"},{"san":"exd5","fen":"r1bqk2r/ppp2ppp/2n2n2/3P4/2BP4/5N2/PP1N1PPP/R2QK2R b KQkq - 0 9","mm":{"from":"e4","to":"d5"},"oid":"13-1-5"},{"san":"Nxd5","fen":"r1bqk2r/ppp2ppp/2n5/3n4/2BP4/5N2/PP1N1PPP/R2QK2R w KQkq - 0 10","mm":{"from":"f6","to":"d5"},"oid":"13-1-6"},{"san":"Qb3","fen":"r1bqk2r/ppp2ppp/2n5/3n4/2BP4/1Q3N2/PP1N1PPP/R3K2R b KQkq - 1 10","mm":{"from":"d1","to":"b3"},"oid":"13-1-7"}]],"san":"Nc3","fen":"r1bqk2r/pppp1ppp/2n2n2/8/1bBPP3/2N2N2/PP3PPP/R1BQK2R b KQkq - 2 7","mm":{"from":"b1","to":"c3"},"oid":"13"},{"comments":["利用牵制战术吃得一兵"],"san":"Nxe4","fen":"r1bqk2r/pppp1ppp/2n5/8/1bBPn3/2N2N2/PP3PPP/R1BQK2R w KQkq - 0 8","mm":{"from":"f6","to":"e4"},"oid":"14"},{"san":"O-O","fen":"r1bqk2r/pppp1ppp/2n5/8/1bBPn3/2N2N2/PP3PPP/R1BQ1RK1 b kq - 1 8","mm":{"from":"e1","to":"g1"},"oid":"15"},{"nag":["$2"],"comments":["忽视了己方出子过慢的缺陷，此时正确的走法应该是 8...Bc3 9.bc d5!巩固了e4的马不会受到白车牵制战术的攻击，畅通了象路，接着就赶紧短易位保证王的安全"],"san":"Nxc3","fen":"r1bqk2r/pppp1ppp/2n5/8/1bBP4/2n2N2/PP3PPP/R1BQ1RK1 w kq - 0 9","mm":{"from":"e4","to":"c3"},"oid":"16"},{"san":"bxc3","fen":"r1bqk2r/pppp1ppp/2n5/8/1bBP4/2P2N2/P4PPP/R1BQ1RK1 b kq - 0 9","mm":{"from":"b2","to":"c3"},"oid":"17"},{"san":"Bxc3","fen":"r1bqk2r/pppp1ppp/2n5/8/2BP4/2b2N2/P4PPP/R1BQ1RK1 w kq - 0 10","mm":{"from":"b4","to":"c3"},"oid":"18"},{"nag":["$1"],"comments":["黑棋贪兵的恶果显现出来，白方控制了a3-f8的斜线限制黑棋易位，吹响了进攻的号角"],"san":"Ba3","fen":"r1bqk2r/pppp1ppp/2n5/8/2BP4/B1b2N2/P4PPP/R2Q1RK1 b kq - 1 10","mm":{"from":"c1","to":"a3"},"oid":"19"},{"comments":["无奈的选择，必须要遮住来自a3象的控制，不然无法防范白棋e线的打将，糟糕的是10...Ba1 11.Re1+黑棋无法避免失后，丢子告负"],"san":"d6","fen":"r1bqk2r/ppp2ppp/2np4/8/2BP4/B1b2N2/P4PPP/R2Q1RK1 w kq - 0 11","mm":{"from":"d7","to":"d6"},"oid":"20"},{"san":"Rc1","fen":"r1bqk2r/ppp2ppp/2np4/8/2BP4/B1b2N2/P4PPP/2RQ1RK1 b kq - 1 11","mm":{"from":"a1","to":"c1"},"oid":"21"},{"san":"Ba5","fen":"r1bqk2r/ppp2ppp/2np4/b7/2BP4/B4N2/P4PPP/2RQ1RK1 w kq - 2 12","mm":{"from":"c3","to":"a5"},"oid":"22"},{"comments":["双重威胁，欲利用牵制战术挺进d5吃死c6马，也暗藏了驱赶c6马后吃a5象"],"san":"Qa4","fen":"r1bqk2r/ppp2ppp/2np4/b7/Q1BP4/B4N2/P4PPP/2R2RK1 b kq - 3 12","mm":{"from":"d1","to":"a4"},"oid":"23"},{"comments":["绝望的挣扎，其他走法均无法抵挡白棋的双重威胁，必失子告负，现在黑棋暗藏b5的杀手锏意图扭转乾坤"],"san":"a6","fen":"r1bqk2r/1pp2ppp/p1np4/b7/Q1BP4/B4N2/P4PPP/2R2RK1 w kq - 0 13","mm":{"from":"a7","to":"a6"},"oid":"24"},{"nag":["$1"],"comments":["巧妙地避开对方的反击，威胁吃c6马后再吃a5象"],"san":"Bd5","fen":"r1bqk2r/1pp2ppp/p1np4/b2B4/Q2P4/B4N2/P4PPP/2R2RK1 b kq - 1 13","mm":{"from":"c4","to":"d5"},"oid":"25"},{"san":"Bb6","fen":"r1bqk2r/1pp2ppp/pbnp4/3B4/Q2P4/B4N2/P4PPP/2R2RK1 w kq - 2 14","mm":{"from":"a5","to":"b6"},"oid":"26"},{"nag":["$1"],"san":"Rxc6","fen":"r1bqk2r/1pp2ppp/pbRp4/3B4/Q2P4/B4N2/P4PPP/5RK1 b kq - 0 14","mm":{"from":"c1","to":"c6"},"oid":"27"},{"comments":["14...bc将遭遇到白棋15.Qc6+再抽吃a8车，白棋多子胜定"],"san":"Bd7","fen":"r2qk2r/1ppb1ppp/pbRp4/3B4/Q2P4/B4N2/P4PPP/5RK1 w kq - 1 15","mm":{"from":"c8","to":"d7"},"oid":"28"},{"san":"Re1+","fen":"r2qk2r/1ppb1ppp/pbRp4/3B4/Q2P4/B4N2/P4PPP/4R1K1 b kq - 2 15","mm":{"from":"f1","to":"e1"},"oid":"29"},{"san":"Kf8","fen":"r2q1k1r/1ppb1ppp/pbRp4/3B4/Q2P4/B4N2/P4PPP/4R1K1 w - - 3 16","mm":{"from":"e8","to":"f8"},"oid":"30"},{"nag":["$3"],"comments":["弃后弃车的妙手！强行打开a3-f8的象路让黑格象投入战斗，一环接一环的压迫式进攻已让黑棋应接不暇，现在白棋给予黑棋致命一击"],"san":"Rxd6","fen":"r2q1k1r/1ppb1ppp/pb1R4/3B4/Q2P4/B4N2/P4PPP/4R1K1 b - - 0 16","mm":{"from":"c6","to":"d6"},"oid":"31"},{"comments":["若吃皇后16...Ba4将遭遇白棋17.Rd8+双将杀王"],"san":"cxd6","fen":"r2q1k1r/1p1b1ppp/pb1p4/3B4/Q2P4/B4N2/P4PPP/4R1K1 w - - 0 17","mm":{"from":"c7","to":"d6"},"oid":"32"},{"san":"Bxd6+","fen":"r2q1k1r/1p1b1ppp/pb1B4/3B4/Q2P4/5N2/P4PPP/4R1K1 b - - 0 17","mm":{"from":"a3","to":"d6"},"oid":"33"},{"san":"Kg8","fen":"r2q2kr/1p1b1ppp/pb1B4/3B4/Q2P4/5N2/P4PPP/4R1K1 w - - 1 18","mm":{"from":"f8","to":"g8"},"oid":"34"},{"nag":["$1"],"comments":["又一强力击，弃象打破黑棋最后的屏障，请对方老王出宫"],"san":"Bxf7+","fen":"r2q2kr/1p1b1Bpp/pb1B4/8/Q2P4/5N2/P4PPP/4R1K1 b - - 0 18","mm":{"from":"d5","to":"f7"},"oid":"35"},{"san":"Kxf7","fen":"r2q3r/1p1b1kpp/pb1B4/8/Q2P4/5N2/P4PPP/4R1K1 w - - 0 19","mm":{"from":"g8","to":"f7"},"oid":"36"},{"san":"Ne5+","fen":"r2q3r/1p1b1kpp/pb1B4/4N3/Q2P4/8/P4PPP/4R1K1 b - - 1 19","mm":{"from":"f3","to":"e5"},"oid":"37"},{"san":"Ke6","fen":"r2q3r/1p1b2pp/pb1Bk3/4N3/Q2P4/8/P4PPP/4R1K1 w - - 2 20","mm":{"from":"f7","to":"e6"},"oid":"38"},{"san":"Qc4+","fen":"r2q3r/1p1b2pp/pb1Bk3/4N3/2QP4/8/P4PPP/4R1K1 b - - 3 20","mm":{"from":"a4","to":"c4"},"oid":"39"},{"comments":["[%arrow a3|c5][%command2 operand2]"],"san":"Kxd6","fen":"r2q3r/1p1b2pp/pb1k4/4N3/2QP4/8/P4PPP/4R1K1 w - - 0 21","mm":{"from":"e6","to":"d6"},"oid":"40"},{"comments":["连珠妙手，一气呵成，实乃弃子攻杀的佳作"],"san":"Nf7#","fen":"r2q3r/1p1b1Npp/pb1k4/8/2QP4/8/P4PPP/4R1K1 b - - 1 21","mm":{"from":"e5","to":"f7"},"oid":"41"}]';
-
-	moves = JSON.parse(strObj);
+	
+    initialStatus(game.pgn);
+	
 	$(".txtAreaPgn").html(obj2Html(moves,1));
 	$(".txtAreaPgn>a").bind("click",function(e){
 		cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
@@ -421,9 +235,31 @@ function clearTimer () {
 		// body...
 	}
 
+	function initialStatus(pgnStr) {
+		if  ( (!pgnStr.match(/^\s+$/)) && (pgnmove = pgn.parse(pgnStr))  ) {
+			moves = pgnmove.movetext.moves;
+			var fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+			objAddFens(moves || [],fen ,function (ply,fen) {
+				if (!fen) {console.log("fen is empty")}
+					else { chess.load(fen)};
+				var san = ply.san.split(" ")[0];
+				chess.move(san);
+				ply.fen = chess.fen();
+				var mm = chess.history({verbose:true}).pop();
+				ply.mm = {'from':mm.from || '','to':mm.to || ''};
+				// console.log(ply.mm);
+			});
+
+			objAddOids(moves);
+	
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 });
 </script>
-<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+<link href="/css/magnific-popup.css" rel="stylesheet" type="text/css">
 </body>
 </html>

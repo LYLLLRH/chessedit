@@ -24,7 +24,8 @@ router.post('/pgn/add',function (req,res) {
   		res.end('Error Uploding');
  		throw err; 	
   	} else {
-  	res.end('http://www.lychess.net/h/' + fileName );
+  	res.end('<iframe width=100% height= 450 src="http://www.lychess.net:3001/h/'+fileName+'" frameborder=0></iframe>');
+
   	}
   }) 
   
