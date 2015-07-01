@@ -101,7 +101,7 @@ function obj2Html(theObj, number) {
                         for (var j = 0; j < move[p].length; j++) {
                             if (!move[p][j].match(/^\[%/)) {
                                 if (move[p][j].length !=0) {
-									commentStr += " { <span class=\"comment\">" + move[p][j] + " </span> } ";
+									commentStr += " <span class=\"comment\">" + move[p][j] + " </span>  ";
 									seq = false;
 								}	
 							}
