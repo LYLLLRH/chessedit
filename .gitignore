@@ -1,3 +1,4 @@
 /node_modules
 /pgndb
 *.log
+/lib/sf_engine/*.*
