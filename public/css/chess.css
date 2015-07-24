@@ -59,7 +59,7 @@ p{text-indent:2em;}
 .account_list li{width:300px; height:33px; line-height:33px; text-align:left; color:#555; font-size:12px; }
 
 .QQ{display:block; width:33px; height:33px; overflow:hidden; line-height:500px; margin-right:10px; background:url(../images/login.png) 0 0; float:left;}
- 
+
 .QQ:hover{background:url(../images/login.png) 0 39px;}
 
 .sina{display:block; width:33px; height:33px; overflow:hidden; line-height:500px; margin-right:10px; background:url(../images/login.png) 102px 0; float:left;}
@@ -80,11 +80,11 @@ p{text-indent:2em;}
 
 .adtext{width:1014px; position:absolute; top:25px; right:30px; text-align:right;}
 
-.adtext li.t1{font-size:36px; color:#fff; font-weight:bold; line-height:50px;} 
+.adtext li.t1{font-size:36px; color:#fff; font-weight:bold; line-height:50px;}
 
-.adtext li.t2{font-size:22px; color:#fff; line-height:50px; clear:both;} 
+.adtext li.t2{font-size:22px; color:#fff; line-height:50px; clear:both;}
 
-.adtext li.t3{font-size:14px; color:#09C; line-height:50px; font-weight:bold;} 
+.adtext li.t3{font-size:14px; color:#09C; line-height:50px; font-weight:bold;}
 
 .adbutton{width:180px; height:45px; line-height:40px; border-radius:6px; text-align:center; font-size:20px; color:#fff !important; font-weight:bold; background:#09C; border:#8ddcf2 3px solid; display:block; float:right; margin:20px auto;}
 
@@ -179,6 +179,7 @@ p{text-indent:2em;}
 .onlinegamelist03{background:#ededed url(../images/chessicon.png) no-repeat 10px -762px;}
 
 .onlinegamelist04{background:#ededed url(../images/chessicon.png) no-repeat 10px -890px;}
+
 
 .onlinegamelisttext{width:250px; margin:22px 0; position:absolute; top:0; right:0px; text-align:center; font-size:18px; font-weight:bold;}
 
@@ -338,13 +339,13 @@ p{text-indent:2em;}
 
 .dailychess01{float:left; width:200px;margin-right:12px;}
 
-.dailychess02{float:left; width:590px;} 
+.dailychess02{float:left; width:590px;}
 
 .dailychess03{float:right; width:200px;}
 
 /*--chessposition--*/
 
-.chessposition01{float:left; width:520px;} 
+.chessposition01{float:left; width:520px;}
 
 .chessposition02{float:left; width:470px; margin-left: 20px;}
 
@@ -468,9 +469,9 @@ p{text-indent:2em;}
 */
 .positionSet{background-color:#e6e6e6; opacity:0.75; height:556px; border-radius:3px;}
 
-.positionFenFirst{background:url(../images/blogmenubg.png);display: block;padding:5px; background-color:#e6e6e6;background-size:contain; width: 470px; position: relative;} 
+.positionFenFirst{background:url(../images/blogmenubg.png);display: block;padding:5px; background-color:#e6e6e6;background-size:contain; width: 470px; position: relative;}
 
-.positionFen{border:1px #ddd solid;display: block;margin:10px 0 0 0;padding:5px; background-image:url("../images/blogmenubg.png");width: 470px; position: relative;} 
+.positionFen{border:1px #ddd solid;display: block;margin:10px 0 0 0;padding:5px; background-image:url("../images/blogmenubg.png");width: 470px; position: relative;}
 .position1 {left: 50%;transform: translate(-50%,0);}
 .position2{height: 46px;left: 50%;transform: translate(-50%,0);}
 .position3{height:60px;}
@@ -525,7 +526,7 @@ margin: 0 1px 0 0;}
 .btnConfirm{margin-top: 3px;}
 
 /*PGN edit*/
-.txtAreaPgn {position:relative;width:100%;height:300px;overflow-y:auto;}
+.txtAreaPgn {position:relative;width:100%;height:250px;overflow-y:auto;}
 .txtAreaPgn>a{cursor:pointer;}
 
 
@@ -575,7 +576,7 @@ span.comment,span.rate{ background: #eeeeee;font-style: italic;font-weight: bold
   box-shadow: 0px 1px 2px 3px grey;
 }
 
-.moveSelectPop { 
+.moveSelectPop {
 
   position: relative;
   background: #FFF;

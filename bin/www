@@ -7,6 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('chessedit:server');
 var http = require('http');
+var sockjs = require('sockjs');
+var sockjs_opts = {sockjs_url: "https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"};
+var sockjs_engine = sockjs.createServer(sockjs_opts);
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +22,66 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+ // enable UCI engine
+ var notifyClient = function(type,data){
+    var eventData = {type: type,
+                     data : data};
+    return JSON.stringify(eventData);
+}
+
+ var Engine = require('uci');
+ var engine = new Engine('lib/sf_engine/stockfish-6-bmi2');
+
+ engine.runProcess().then(function () {
+     console.log('Started');
+     return engine.uciCommand();
+ }).then(function (idAndOptions) {
+     console.log('Engine name - ' + idAndOptions.id.name);
+     return engine.isReadyCommand();
+ }).then(function () {
+     console.log('Ready');
+     return engine.uciNewGameCommand();
+ }).done();
+
+ sockjs_engine.on('connection', function(conn) {
+     conn.on('data', function(message) {
+         var boardInfo = JSON.parse(message);
+         console.log(boardInfo);
+         engine.positionCommand(boardInfo.fen,boardInfo.from + "" + boardInfo.to).then(function () {
+             console.log('Starting position set');
+             console.log('Starting analysis');
+             return engine.goInfiniteCommand(function infoHandler(info) {
+                 console.log(info);
+                 // conn.write(notifyClient("log",info));
+             });
+         }).delay(2000).then(function () {
+             console.log('Stopping analysis');
+             return engine.stopCommand();
+         }).then(function (bestmove) {
+             console.log('Bestmove: ');
+             console.log(bestmove);
+             conn.write(notifyClient("move",bestmove));
+             //return engine.quitCommand();
+         });
+     });
+ });
+
+
+
+
+ process.on('exit', function(code) {
+   console.log('NODE is shutting down with code ' + code);
+     engine.quitCommand().then(function () {
+         console.log('Chess Engine Stopped');
+     }).fail(function (error) {
+         console.log(error);
+     });
+ });
+
+
+
 var server = http.createServer(app);
+sockjs_engine.installHandlers(server, {prefix:'/engine'});
 
 /**
  * Listen on provided port, on all network interfaces.

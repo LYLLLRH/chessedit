@@ -15,6 +15,9 @@
 	<script src="/js/chessboard-0.js" type="text/javascript"></script>
 	<script src="/js/jquery.magnific-popup.min.js"></script>
 
+
+
+
 	<style>
 		* {
 			margin: 0px;
@@ -107,12 +110,12 @@
 		}
 
 
-		.moveHilight 
+		.moveHilight
 		{	background: yellow;
 			color:#00f;
 		}
 
-		span.comment,span.rate{ 
+		span.comment,span.rate{
 			background: #eeeeee;font-style: italic;font-weight: bolder;font-szie:11px;
 		}
 		.posHighlight_g {
@@ -127,7 +130,7 @@
 			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
 		}
 
-		.moveSelectPop { 
+		.moveSelectPop {
 
 			position: relative;
 			background: #FFF;
@@ -189,6 +192,5 @@
 
 
 			var timer,autoMove = false;
-			
+
 			//// Template Part1
-			

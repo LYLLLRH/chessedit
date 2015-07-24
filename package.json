@@ -1,6 +1,6 @@
 {
   "name": "chessedit",
-  "version": "0.1.0",
+  "version": "0.1.5", 
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -13,6 +13,11 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1",
-    "uci":"~0.3.3"
+    "uci": "~0.3.3",
+    "errorhandler": "^1.2.0",
+    "less-middleware": "^1.0.4",
+    "method-override": "^2.2.0",
+    "serve-static": "^1.6.3",
+    "sockjs": "^0.3.9"
   }
 }

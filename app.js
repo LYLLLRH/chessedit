@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
- var pgnadd = require('./routes/pgnadd');
+var pgnadd = require('./routes/pgnadd');
+
 // var pgnget = require('./routes/pgnget');
 
 
@@ -23,7 +24,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'),{maxAge:60*60*1000,hidden:false}));
+// app.use(express.static(path.join(__dirname, 'public'),{maxAge:60*60*1000,hidden:false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -64,6 +66,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 module.exports = app;

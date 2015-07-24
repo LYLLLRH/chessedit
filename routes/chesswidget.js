@@ -17,7 +17,7 @@ router.get('/h/:id',function  (req,res) {
 		fs.exists('./pgndb/'+req.params.id,function(ex){
 			if (!ex) { res.end("没有对应棋谱")}
 		    else {
-			var html = ''
+			var html = '';
 			fs.readFile('cw1.tpl','utf-8',function(err,data){
 				if (err) throw err;
 				html = data;
