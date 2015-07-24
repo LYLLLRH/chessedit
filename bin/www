@@ -10,7 +10,26 @@ var http = require('http');
 var sockjs = require('sockjs');
 var sockjs_opts = {sockjs_url: "https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"};
 var sockjs_engine = sockjs.createServer(sockjs_opts);
+var util = require('util');
+var events = require('events');
+var engineBusy = 0;
+var moveQue = [];
+function ChessEngine() {
+  events.EventEmitter.call(this);
+}
+util.inherits(ChessEngine, events.EventEmitter);
 
+var chessEngine = new ChessEngine();
+
+chessEngine.on('data',function(data){
+//  if (data === 'free') {
+  if ( moveQue.length > 0) {
+    engineBusy = 1;
+    var move = moveQue.pop();
+//    console.log("move:" + move);
+    engineGo(move.c,move.b);
+  }
+});
 /**
  * Get port from environment and store in Express.
  */
@@ -47,26 +66,39 @@ app.set('port', port);
      conn.on('data', function(message) {
          var boardInfo = JSON.parse(message);
          console.log(boardInfo);
-         engine.positionCommand(boardInfo.fen,boardInfo.from + "" + boardInfo.to).then(function () {
-             console.log('Starting position set');
-             console.log('Starting analysis');
-             return engine.goInfiniteCommand(function infoHandler(info) {
-                 console.log(info);
-                 // conn.write(notifyClient("log",info));
-             });
-         }).delay(2000).then(function () {
-             console.log('Stopping analysis');
-             return engine.stopCommand();
-         }).then(function (bestmove) {
-             console.log('Bestmove: ');
-             console.log(bestmove);
-             conn.write(notifyClient("move",bestmove));
-             //return engine.quitCommand();
-         });
+         if (engineBusy === 0 ) {
+           engineBusy = 1;
+           engineGo(conn,boardInfo);
+        } else {
+          console.log("busy: " + boardInfo.fen);
+          moveQue.push({'c':conn,'b':boardInfo});
+          console.log("move queue length =" + moveQue.length);
+        }
      });
  });
 
-
+function engineGo(conn,boardInfo) {
+  engine.positionCommand(boardInfo.fen,boardInfo.from + "" + boardInfo.to).then(function () {
+      console.log('Starting position set: ' + boardInfo.fen);
+      console.log('Starting analysis');
+      return engine.goInfiniteCommand(function infoHandler(info) {
+  //        console.log(info);
+  //        conn.write(notifyClient("log",info));
+  //          console.log("goInfinite Mode!");
+      });
+  }).delay(2000).then(function () {
+      console.log('Stopping analysis');
+      return engine.stopCommand();
+  }).then(function (bestmove) {
+      console.log('Bestmove: ');
+      console.log(bestmove);
+      conn.write(notifyClient("move",bestmove));
+      engineBusy = 0;
+      chessEngine.emit('data','free');
+      //return engine.quitCommand();
+  });
+  // body...
+}
 
 
  process.on('exit', function(code) {
