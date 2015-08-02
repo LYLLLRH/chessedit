@@ -26,6 +26,7 @@
 		}
 		a ,i {
 			cursor :pointer;
+			text-decoration: none;
 		}
 
 		.mainboard{
@@ -110,6 +111,10 @@
 
 		}
 
+		.pgnShare {
+			color:black;
+			outline:none;
+		}
 
 		.moveHilight
 		{	background: yellow;
@@ -131,6 +136,16 @@
 			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
 		}
 
+		.white-popup {
+		  position: relative;
+		  background: #f3f3f3;
+		  padding: 20px;
+		  width: auto;
+		  max-width: 500px;
+		  margin: 20px auto;
+			box-shadow: 0px 1px 2px 3px grey;
+		}
+
 		.moveSelectPop {
 
 			position: relative;
@@ -143,6 +158,7 @@
 		}
 		.moveSelectPop  .selected {background: #eee;}
 		.moveUl:hover {cursor: pointer;}
+
 
 	</style>
 </head>
@@ -158,6 +174,9 @@
 		</div>
 		<div class="moving clear">
 			<div class="movingleft">
+				<div style="float:left;margin-left:10px;padding-top:8px">
+					<a href="#pgnsharepopup" class="pgnShare"><i class="fa fa-fw fa-share-square-o"></i></a>
+				</div>
 				<div style="float:right;margin-right:10px;padding-top:8px" id="pgnflip"><i class="fa fa-fw fa-retweet"></i></div>
 			</div>
 			<div class="movingright">
@@ -172,6 +191,10 @@
 	<div id="moveSelect" class="moveSelectPop mfp-hide" tabindex="-1">
 		<div id="movesPop" tabindex="-1">
 		</div>
+	</div>
+	<div id="pgnsharepopup" class="white-popup mfp-hide">
+		  <div style="border:1px dotted grey;width:80%;Height:200px;font-size:14px;line-height:18px;overflow:scroll" id="pgnContent"></div>
+		  <div style = "border: 1px dotted grey;margin-top: 10px;width:80%;font-size:14px;line-height:18px;" id="fenContent" >FEN: </div>
 	</div>
 
 	<script type="text/javascript">

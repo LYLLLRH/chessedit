@@ -5,6 +5,8 @@
 
     initialStatus(game.pgn);
 
+
+
 	$(".txtAreaPgn").html(obj2Html(moves,1));
 	$(".txtAreaPgn a").bind("click",function(e){
 		cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
@@ -256,6 +258,22 @@ function clearTimer () {
 		}
 	}
 
+  $('.pgnShare').magnificPopup({
+    type:'inline',
+    callbacks: {
+        open: function() {
+          $("#pgnContent").text(obj2PgnStandard(moves));
+          $("#fenContent").text("FEN: "+board.fen());
+        }
+    },
+    midClick: true
+
+  });
+
+/*   $('.pgnShare').click(function(ev){
+     var text = $('.pgnShare').text();
+     $('.pgnShare').text(text+'1');
+   }) */
 });
 </script>
 <link href="/css/magnific-popup.css" rel="stylesheet" type="text/css">
