@@ -233,6 +233,64 @@ function obj2PgnStandard(theObj, number) {
 
 }
 
+function obj2PgnOrigin(theObj, number) {
+    var retStr = " ";
+    var lastseq = true;
+    var number = number || 1;
+    for (var i = 0; i < theObj.length; i++) {
+        var move = theObj[i];
+        var seq = true;
+        var moveStr = "";
+        var commentStr = "",
+            nagStr = "",
+            ravStr = "";
+        for (var p in move) {
+            if (typeof move[p] == 'object') {
+                switch (p) {
+
+                    case "rav":
+                        for (var j = 0; j < move[p].length; j++) {
+                            var strNum = "";
+                            strNum = number % 2 ? "" : number / 2 + "... ";
+                            if ( move[p][j].length !=0 ) {
+							ravStr += " (" + strNum + obj2PgnStandard(move[p][j], number) + " ) ";
+							seq = false;
+							}
+                        }
+						break;
+                    case "nag":
+                        for (var j = 0; j < move[p].length; j++) {
+                            nagStr += nagConvert(move[p][j]);
+                        }
+                        seq = nagStr == ''? true:false;
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                if (p == "san") {
+                    var strNum = "";
+                    if ((!lastseq)) {
+                        strNum = (number % 2) ? (number + 1) / 2 + ". " : number / 2 + "... ";
+                    } else {
+                        strNum = (number % 2) ? (number + 1) / 2 + ". " : " ";
+                    }
+                    moveStr = strNum + move[p] +" ";
+					number++;
+
+                }
+            }
+
+        }
+		moveStr += nagStr + " " + commentStr + ravStr;
+//		number++;
+		lastseq = seq;
+        retStr += moveStr;
+    }
+    return retStr;
+
+}
+
 
 function obj2Pgn(theObj, number) {
     var retStr = " ";

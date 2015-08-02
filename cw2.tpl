@@ -262,7 +262,7 @@ function clearTimer () {
     type:'inline',
     callbacks: {
         open: function() {
-          $("#pgnContent").text(obj2PgnStandard(moves));
+          $("#pgnContent").text(obj2PgnOrigin(moves));
           $("#fenContent").text("FEN: "+board.fen());
         }
     },
