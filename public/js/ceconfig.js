@@ -5,7 +5,7 @@ var print = function(m, p) {
     p = (p === undefined) ? '' : JSON.stringify(p);
     $('#engine_log').append($("<code>").text(m + ' ' + p ));
     $('#engine_log').append($("<br>"));
-    // $('#engine_log').scrollTop($('#engine_log').scrollTop()+10000);
+    $('#engine_log').scrollTop($('#engine_log').scrollTop()+10000);
     // $('#engine_log').append(m + ' ' + p + $("<br>"));
 };
 

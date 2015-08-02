@@ -89,6 +89,9 @@
 			float: right;
 		}
 
+		.rav {
+			color: #bbcccc;
+		}
 
 		.clear {
 			clear:both;

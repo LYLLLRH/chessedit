@@ -376,13 +376,13 @@ $(document).ready(function() {
 	$("#moveDel").click(function(){
 		cursorCur = objDelNode(moves,cursorCur);
 		$(".txtAreaPgn").html(obj2Html(moves,1));
-		$(".txtAreaPgn>a").bind("click",function(e){
+		$(".txtAreaPgn a").bind("click",function(e){
 			cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
 			boardRefresh(board,$aa,moves,cursorCur);
 			chessRefresh(chess,obj2Fen(moves,cursorCur));
 			pgnHilightChange($aa,cursorCur,1)
 		});
-		initialStat:us(obj2Pgn(moves));
+		initialStatus(obj2Pgn(moves));
 		boardRefresh(board,$aa,moves,cursorCur);
 		chessRefresh(chess,obj2Fen(moves,cursorCur));
 		pgnHilightChange($aa,cursorCur,1);
@@ -399,7 +399,7 @@ $(document).ready(function() {
 
 		updateObjComm(moves,cursorCur,comment);
 		$(".txtAreaPgn").html(obj2Html(moves,1));
-		$(".txtAreaPgn>a").bind("click",function(e){
+		$(".txtAreaPgn a").bind("click",function(e){
 			cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
 			boardRefresh(board,$aa,moves,cursorCur);
 						chessRefresh(chess,obj2Fen(moves,cursorCur));
@@ -777,9 +777,9 @@ $(document).ready(function() {
 
 			objAddOids(moves);
 			$(".txtAreaPgn").html(obj2Html(moves,1));
-			$(".txtAreaPgn>a").bind("click",function(e){
+			$(".txtAreaPgn a").bind("click",function(e){
 				cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
-				console.log("c:before"+cursorCur);
+				// console.log("c:before"+cursorCur);
 				boardRefresh(board,$aa,moves,cursorCur);
 				chessRefresh(chess,obj2Fen(moves,cursorCur));
 				pgnHilightChange($aa,cursorCur,1)
@@ -864,7 +864,7 @@ $(document).ready(function() {
 	pgn3 = '1.e4 ?? e5 $1 2.Nf3 (2. Nc3) 2... Nc6 ?! {Good Move} {[%line b2:c4:g]} {[%position b1:g]} 3. Bb5 {Good Move} 3... a6 !! (3... Nf6 $1 ) (3... Nb8 O-O) 4. Ba4 $30 (4. Bxc6 dxc6 ( 4... bxc6)) 4... b5 5. Bb3 Nf6 6. O-O *';
 	pgn4 = '1. e4 e5 ! 2. Nf3 ? Nc6 !! 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Nc3 ?! Nxe4 8. O-O Nxc3 ? 9. bxc3 Bxc3 10. Ba3 ! d6 11. Rc1 Ba5 12. Qa4 a6 13. Bd5 ! Bb6 14. Rxc6 ! Bd7 15. Re1+ Kf8 16. Rxd6 !! cxd6 17. Bxd6+ Kg8 18. Bxf7+ ! Kxf7 19. Ne5+ Ke6 20. Qc4+ Kxd6 21. Nf7#';
   // $("#txtPgn").val(pgn1.join("\n"));
-   $("#txtPgn").val(pgn4);
+   $("#txtPgn").val(pgn3);
   //$("#txtPgn").val(pgn3);
 
 });

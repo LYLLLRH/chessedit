@@ -8,7 +8,7 @@ body{background:#3b5998 url(../images/bodybg_b_8.jpg) fixed !important;}
 
 body{text-align:center; font-family: Verdana, Geneva, sans-serif; font-size:12px;}
 
-a{text-decoration:none !important; color:#777 !important;}
+a{text-decoration:none !important; color:#777}
 
 a:hover{color:#F60 !important;}
 
@@ -527,9 +527,11 @@ margin: 0 1px 0 0;}
 
 /*PGN edit*/
 .txtAreaPgn {position:relative;width:100%;height:250px;overflow-y:auto;}
-.txtAreaPgn>a{cursor:pointer;}
+.txtAreaPgn a{cursor:pointer;}
 
-
+.rav { color: #bbcccc;}
+div.rav {display: inline-block}
+.rav>a { color: #bbcccc; }
 div.txtComment{position: relative;}
 textarea.txtComment{display: inline-block;float:left;width: 240px;height: 90px; resize: none;}
 

@@ -1,12 +1,12 @@
-    // Tmplate Part2 
+    // Tmplate Part2
     $("#gameuser").text (game.gameplay);   // 需要在服务器端设置
 	$("#gameinfo").text (game.gameinfo); // 需要在服务器端设置
 	// strObj 需要在服务器端设置
-	
+
     initialStatus(game.pgn);
-	
+
 	$(".txtAreaPgn").html(obj2Html(moves,1));
-	$(".txtAreaPgn>a").bind("click",function(e){
+	$(".txtAreaPgn a").bind("click",function(e){
 		cursorCur = JSON.parse("["+(this.id).replace(/\-/g,",")+"]");
 		boardRefresh(board,$aa,moves,cursorCur);
 		pgnHilightChange($aa,cursorCur,1)
@@ -32,16 +32,16 @@
     });
 
     $("#pgnAutoMove").click(function(event) {
-    	if ( autoMove) { 
+    	if ( autoMove) {
     		clearTimer();}
     		else {autoPlay()};
 
     	});
 
     $("#pgnflip").click(function(event) {
-    	board.flip(); 
+    	board.flip();
     	boardRefresh(board,$aa,moves,cursorCur);
-    	pgnHilightChange($aa,cursorCur,1);      
+    	pgnHilightChange($aa,cursorCur,1);
     });
 
     function stepBack() {
@@ -49,9 +49,9 @@
     	if (!(cur =curBackward(moves,cursorCur)) || cur[0]==0) {
     		cursorCur = [0];
     		pgnHilightChange($aa,cursorCur,0);
-    		boardRefresh(board,$aa,moves,[0]);	
+    		boardRefresh(board,$aa,moves,[0]);
     		return false;
-    	} 
+    	}
     	cursorCur = cur;
     	boardRefresh(board,$aa,moves,cursorCur);
     	pgnHilightChange($aa,cursorCur,1);
@@ -60,7 +60,7 @@
     function startPosition() {
     	cursorCur = {};
     	cursorCur = [0];
-    	boardRefresh(board,$aa,moves,cursorCur);	 
+    	boardRefresh(board,$aa,moves,cursorCur);
     	pgnHilightChange($aa,cursorCur,0);
     };
 
@@ -68,7 +68,7 @@
     	cursorCur =  {};
     	cursorCur = [moves.length];
     	boardRefresh(board,$aa,moves,cursorCur);
-    	pgnHilightChange($aa,cursorCur,1);		
+    	pgnHilightChange($aa,cursorCur,1);
     };
 
     function stepFowardAuto (argument) {
@@ -78,16 +78,16 @@
     		cursorCur = cur;
     		boardRefresh(board,$aa,moves,cursorCur);
 
-    		pgnHilightChange($aa,cursorCur,1);	
-    		return true;	
+    		pgnHilightChange($aa,cursorCur,1);
+    		return true;
     	}
     }
     function stepFoward() {
     	var cur;
     	if (!(cur =curForward(moves,cursorCur))) {
     		return false;
-    	} 
-    	if ( getMultiMoves(moves,cur).length>1) { 
+    	}
+    	if ( getMultiMoves(moves,cur).length>1) {
     		$.magnificPopup.open({
     			items: {src: '#moveSelect',
     		},
@@ -95,8 +95,8 @@
     		alignTop: true,
     		fixedContentPos: false,
     		fixedBgPos: true,
-    		callbacks: { 
-    			open: function () { 
+    		callbacks: {
+    			open: function () {
 
     				var multiMoves = getMultiMoves(moves,cur);
 
@@ -104,7 +104,7 @@
     				for (var i=1;i<multiMoves.length;i++) {
     					html += "<li class=\"moveUl\" id=\"m" + (i+1) +"\">"+(i+1)+". "+ multiMoves[i] +"</li>";
     				}
-    				html += "</ul>"; 
+    				html += "</ul>";
     				$("#movesPop").html(html);
     				$(".moveUl").on("click",function(){
     					$("#movesPop").find(".selected").removeClass("selected");
@@ -127,7 +127,7 @@ close: function(){
 	boardRefresh(board,$aa,moves,cursorCur);
 
 	pgnHilightChange($aa,cursorCur,1);
-}	
+}
 },
 focus: "#movesPop",
 modal: true
@@ -146,7 +146,7 @@ function getMultiMoves(moves,cursorCur) {
 	multiMoves = [];
 	node = obj2Node(moves,cursor);
 	multiMoves.push(node.san);
-	if ( node=obj2Node(moves,cursor).rav ) { 
+	if ( node=obj2Node(moves,cursor).rav ) {
 		node.forEach(function(rav){
 			multiMoves.push(rav[0].san);
 		});
@@ -160,9 +160,9 @@ function stepBack() {
 		cursorCur = [0];
 		pgnHilightChange($aa,cursorCur,0);
 		boardRefresh(board,$aa,moves,[0]);
-		
+
 		return false;
-	} 
+	}
 	cursorCur = cur;
 	boardRefresh(board,$aa,moves,cursorCur);
 
@@ -249,7 +249,7 @@ function clearTimer () {
 			});
 
 			objAddOids(moves);
-	
+
 			return true;
 		} else {
 			return false;

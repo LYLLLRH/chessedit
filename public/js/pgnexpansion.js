@@ -103,23 +103,24 @@ function obj2Html(theObj, number) {
                                 if (move[p][j].length !=0) {
 									commentStr += " <span class=\"comment\">" + move[p][j] + " </span>  ";
 									seq = false;
-								}	
+								}
 							}
-						}		
+						}
                         break;
                     case "rav":
                         for (var j = 0; j < move[p].length; j++) {
                             var strNum = "";
                             strNum = number % 2 ? "" : number / 2 + "... ";
-                            if ( move[p][j].length !=0 ) { 
-							ravStr += " (" + strNum + obj2Html(move[p][j], number) + " ) ";
+                            if ( move[p][j].length !=0 ) {
+				//			ravStr += " (" + strNum + obj2Html(move[p][j], number) + " ) ";
+              ravStr += "<div class=\"rav\"> (" + strNum + obj2Html(move[p][j], number) + " )</div> ";
 							seq = false;
 							}
                         }
 						break;
                     case "nag":
                         for (var j = 0; j < move[p].length; j++) {
-                            nagStr += nagConvert( move[p][j]); 
+                            nagStr += nagConvert( move[p][j]);
                         }
                         seq = nagStr == ''? true:false;
                         break;
@@ -140,7 +141,7 @@ function obj2Html(theObj, number) {
                     } else {
                         strNum = (number % 2) ? (number + 1) / 2 + ". " : " ";
                     }
-                    moveStr = strNum + "<a id=\"" + move["oid"] + "\">" + move[p] + " </a>" 
+                    moveStr = strNum + "<a id=\"" + move["oid"] + "\">" + move[p] + " </a>"
 					number++;
 
                 }
@@ -179,15 +180,15 @@ function obj2PgnStandard(theObj, number) {
                                 if (move[p][j].length !=0) {
 									commentStr += " {" + move[p][j] + "} ";
 									seq = false;
-								}	
+								}
 							}
-						}		
+						}
                         break;
                     case "rav":
                         for (var j = 0; j < move[p].length; j++) {
                             var strNum = "";
                             strNum = number % 2 ? "" : number / 2 + "... ";
-                            if ( move[p][j].length !=0 ) { 
+                            if ( move[p][j].length !=0 ) {
 							ravStr += " (" + strNum + obj2PgnStandard(move[p][j], number) + " ) ";
 							seq = false;
 							}
@@ -195,7 +196,7 @@ function obj2PgnStandard(theObj, number) {
 						break;
                     case "nag":
                         for (var j = 0; j < move[p].length; j++) {
-                            nagStr += nagConvert(move[p][j]); 
+                            nagStr += nagConvert(move[p][j]);
                         }
                         seq = nagStr == ''? true:false;
                         break;
@@ -216,7 +217,7 @@ function obj2PgnStandard(theObj, number) {
                     } else {
                         strNum = (number % 2) ? (number + 1) / 2 + ". " : " ";
                     }
-                    moveStr = strNum + move[p] +" ";  
+                    moveStr = strNum + move[p] +" ";
 					number++;
 
                 }
@@ -253,13 +254,13 @@ function obj2Pgn(theObj, number) {
 									commentStr += " {" + move[p][j] + "} ";
 									seq = false;
 							}
-						}				
+						}
                         break;
                     case "rav":
                         for (var j = 0; j < move[p].length; j++) {
                             var strNum = "";
                             strNum = number % 2 ? "" : number / 2 + "... ";
-                            if ( move[p][j].length !=0 ) { 
+                            if ( move[p][j].length !=0 ) {
 							ravStr += " (" + strNum + obj2Pgn(move[p][j], number) + " ) ";
 							seq = false;
 							}
@@ -487,7 +488,7 @@ function pgnHilightChange($board, oid, bg) {
 				lastClass[0].className = lastClass[0].className.replace(' last','');
 			}
 		}
-	*/	
+	*/
 		var offsetTop = getOffsetTop(oidStr)-getOffsetTop('1');
 		if ( offsetTop > 290 ) {
 			$(".txtAreaPgn").scrollTop(offsetTop-280);
@@ -495,8 +496,8 @@ function pgnHilightChange($board, oid, bg) {
 				$(".txtAreaPgn").scrollTop(0);
 		}
 		// id = 0 为开始棋局需要单独处理；
-		
-/*		
+
+/*
 		if (bg==0) {
 			document.getElementById((id)+'').className="";
 		} else {
@@ -522,14 +523,14 @@ function updateObjLine(moves,cursorCur,line,flag){
 		}
 		if (flag) {
 			node.comments.push("[%line "+line+"]");
-		}		
+		}
 	} else {
 		if (flag) {
 			var comment = ["[%line "+line+"]"];
 			node.comments = comment;
 		}
 	console.log(JSON.stringify(node));
-	}	
+	}
 }
 
 function updateObjCell(moves,cursorCur,cell,flag){
@@ -547,14 +548,14 @@ function updateObjCell(moves,cursorCur,cell,flag){
 		}
 		if (flag) {
 			node.comments.push("[%position "+cell+"]");
-		}		
+		}
 	} else {
 		if (flag) {
 			var comment = ["[%position "+cell+"]"];
 			node.comments = comment;
 		}
 	console.log(JSON.stringify(node));
-	}	
+	}
 }
 
 function updateObjComm(moves,cursorCur,comm){
@@ -576,7 +577,7 @@ function updateObjComm(moves,cursorCur,comm){
 	} else {
 		var comment = [comm];
 		if (comm!="") {node.comments = comment;}
-	}	
+	}
 	console.log(node.comments);
 }
 
@@ -585,13 +586,13 @@ function updateObjRate(moves,cursorCur,rate)  {
 	if (rate == "") {
 		node.san = node.san.split(" ")[0];
 	} else {
-		node.san = node.san.split(" ")[0] +" " +rate; 
+		node.san = node.san.split(" ")[0] +" " +rate;
 	}
 	console.log(node.san);
 }
 
 function updateHtmlRate($pgnHtml,cursorCur,rate){
-	
+
 	var san = $pgnHtml.find("#"+cursorCur.join("-")).text();
 	if (rate=="") {
 		$pgnHtml.find("#"+cursorCur.join("-")).text(san.split(" ")[0]+" ");
@@ -615,7 +616,7 @@ function initialStatus(moves,cursorCur,board) {
 	board.position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
 }
-// Delete nodes which after cursorCur, 
+// Delete nodes which after cursorCur,
 function objDelNode(moves,cursorCur){
 	// splice for everynode excepet first node; moves = [0], pgn = null;
 	if (cursorCur[0] == 0) { return false;}
@@ -626,7 +627,7 @@ function objDelNode(moves,cursorCur){
 	return cursor;
 }
 
-// Get node's parents; clear node 
+// Get node's parents; clear node
 function obj2ParentNode(moves, cursorCur) {
 	var move;
 	var cursor = cursorCur.slice(0);
@@ -642,7 +643,7 @@ function obj2ParentNode(moves, cursorCur) {
 			return obj2ParentNode(moves[cursor.shift() - 1], cursor);
 		}
 	}
-}	
+}
 
 function getOffsetTop(id) {
 	return document.getElementById(id).offsetTop;
