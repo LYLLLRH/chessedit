@@ -89,9 +89,7 @@
 			float: right;
 		}
 
-		.rav {
-			color: #bbcccc;
-		}
+		.rav { color: #bbcccc;display: inline;}
 
 		.clear {
 			clear:both;
