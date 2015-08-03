@@ -90,7 +90,7 @@
 			float: right;
 		}
 
-		.rav { color: #bbcccc;display: inline;}
+		.rav { color: #839090;display: inline;}
 
 		.clear {
 			clear:both;
