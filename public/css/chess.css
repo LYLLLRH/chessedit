@@ -529,8 +529,8 @@ margin: 0 1px 0 0;}
 .txtAreaPgn {position:relative;width:100%;height:250px;overflow-y:auto;}
 .txtAreaPgn a{cursor:pointer;}
 
-.rav { color: #bbcccc;display: inline;}
-.rav>a { color: #bbcccc; }
+.rav { color: #839090;display: inline;}
+.rav>a { color: #839090; }
 div.txtComment{position: relative;}
 textarea.txtComment{display: inline-block;float:left;width: 240px;height: 90px; resize: none;}
 
