@@ -253,7 +253,7 @@ function obj2PgnOrigin(theObj, number) {
                             var strNum = "";
                             strNum = number % 2 ? "" : number / 2 + "... ";
                             if ( move[p][j].length !=0 ) {
-							ravStr += " (" + strNum + obj2PgnStandard(move[p][j], number) + " ) ";
+							ravStr += " (" + strNum + obj2PgnOrigin(move[p][j], number) + " ) ";
 							seq = false;
 							}
                         }
