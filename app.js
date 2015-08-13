@@ -9,8 +9,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
 var pgnadd = require('./routes/pgnadd');
-
-// var pgnget = require('./routes/pgnget');
+var pgnlist = require('./routes/pgnlist');
+var pgnget = require('./routes/pgnget');
 
 
 var app = express();
@@ -30,7 +30,8 @@ app.use(express.static(path.join(__dirname, 'public'),{maxAge:60*60*1000,hidden:
 app.use('/', routes);
 app.use('/users', users);
 app.post('/pgn/add',pgnadd);
-// app.use('/pgn/:id',pgnget);
+app.get('/pgn/list/:user',pgnlist);
+app.get('/s/:id',pgnget);
 app.get('/h/:id',chesswidget);
 
 

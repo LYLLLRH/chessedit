@@ -263,17 +263,13 @@ function clearTimer () {
     callbacks: {
         open: function() {
           $("#pgnContent").text(obj2PgnOrigin(moves));
-          $("#fenContent").text("FEN: "+board.fen());
+          $("#fenContent").text("FEN: "+ obj2Fen(moves,cursorCur));
         }
     },
     midClick: true
 
   });
 
-/*   $('.pgnShare').click(function(ev){
-     var text = $('.pgnShare').text();
-     $('.pgnShare').text(text+'1');
-   }) */
 });
 </script>
 <link href="/css/magnific-popup.css" rel="stylesheet" type="text/css">

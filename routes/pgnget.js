@@ -1,10 +1,20 @@
 var express = require("express");
 var router = express.Router();
+var fs = require('fs');
 
-router.post('/pgn/add',function  (req,res) {
+router.get('/s/:id',function  (req,res) {
 
-	console.log(req.body);
-	res.end("http://www.lychess.net/html/2015063001");
+		console.log(req.params.id);
+		fs.exists('./pgndb/'+req.params.id,function(ex){
+			if (!ex) { res.end("没有对应棋谱")}
+		    else {
+				fs.readFile('./pgndb/'+req.params.id,'utf-8',function(err,data){
+					if (err) throw err;
+					res.end(data);	
+				});
+
+			}
+		})	
 });
 
 
