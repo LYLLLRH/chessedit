@@ -22,13 +22,14 @@
 		<script src="js/jquery.magnific-popup.min.js"></script>
 		<script src="http://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js" charset="utf-8"></script>
 		<script src="js/ceconfig.js"></script>
+		<script src="js/html2canvas.min.js"></script>
 
 
 	</head>
 	<body>
 	<div class="toolbar"> <a href="Index.html"><img src="images/logo2.png" title="首页" width="32" height="32" /></a>
 		<img src="images/toolbar00.png"  />
-		<a href="Lessons.html"><img src="images/toolbar01.png" title="学习" width="32" height="32" /></a>
+		<a href="Lessonsƒƒ.html"><img src="images/toolbar01.png" title="学习" width="32" height="32" /></a>
 		<img src="images/toolbar00.png"  />
 		<a href="Game.html"><img src="images/toolbar02.png" title="下棋" width="32" height="32" /></a>
 		<img src="images/toolbar00.png"  />
@@ -164,8 +165,8 @@
 												<form class="pgnupload left" href="#pgnupload">
 												<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-cloud-upload"></span>保存PGN</button>
 												</form>
-												<form class="pgnsavepopup left" href="#pgnsavepopup">
-												<button class="btn btn-default btn-md" id="embedUpload"><span class="glyphicon glyphicon-paperclip"></span>嵌入PGN</button>
+								 				<form class="pgnsavepopup left" href="#pgnsavepopup">
+												<button class="btn btn-default btn-md"><span class="glyphicon glyphicon-paperclip"></span>拷贝PGN</button>
 												</form>
 												</div>
 
@@ -306,8 +307,7 @@
 </div>
 
 <div id="pgnsavepopup" class="white-popup mfp-hide">
-  <textarea style="border:1px dotted grey;width:400px;Height:200px;display:block" placeholder="" id="txtSavePgn"></textarea>
-
+  <!-- <textarea style="border:1px dotted grey;width:400px;Height:200px;display:block" placeholder="" id="txtSavePgn"></textarea> -->
 </div>
 
 
@@ -461,13 +461,22 @@ $(document).ready(function() {
         type: 'inline',
         callbacks: {
             open: function() {
-                //   				console.log('Popup is opened');
-                if (moves && moves.length != 0) {
-				$("#txtSavePgn").val(obj2PgnStandard(moves));
+								html2canvas(
+									$('.board-b72b1'),
+									{
+							  	onrendered: function(canvas) {
+										console.log("Html2Img");
+											document.getElementById('pgnsavepopup').appendChild(canvas);
+										},
+									// width:300,
+									// height:300
+									}
+								);
+							},
+						close:function () {
+							$('canvas').remove();
+						}
 				}
-            },
-
-        }
     });
 
 	$('.pgnupload').magnificPopup({
@@ -848,11 +857,12 @@ $(document).ready(function() {
 
 
 	});
+
+// $('#copyPgnImg').click(function (e) {
+// 	console.log("copYPgnImg");
+
+// });
 	//ajax get pgn from server;
-	//
-
-
-
 
     pgn1 = ['[Event "Blitz:15+10"]',
         '',
