@@ -193,8 +193,8 @@
 		</div>
 	</div>
 	<div id="pgnsharepopup" class="white-popup mfp-hide">
-		  <div style="border:1px dotted grey;width:80%;Height:200px;font-size:14px;line-height:18px;overflow:scroll" id="pgnContent"></div>
-		  <div style = "border: 1px dotted grey;margin-top: 10px;width:80%;font-size:14px;line-height:18px;" id="fenContent" >FEN: </div>
+		  <div style="border:1px dotted grey;width:90%;Height:200px;font-size:13px;line-height:18px;overflow:scroll" id="pgnContent"></div>
+		  <div style = "border: 1px dotted grey;margin-top:10px;width:90%;font-size:13px;line-height:18px;" id="fenContent" >FEN: </div>
 	</div>
 
 	<script type="text/javascript">

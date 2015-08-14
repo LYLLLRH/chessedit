@@ -459,8 +459,9 @@ $(document).ready(function() {
 
     $('.pgnsavepopup').magnificPopup({
         type: 'inline',
+				preloader : true,
         callbacks: {
-            open: function() {
+            beforeOpen: function() {
 								html2canvas(
 									$('.board-b72b1'),
 									{
@@ -470,6 +471,7 @@ $(document).ready(function() {
 										},
 									// width:300,
 									// height:300
+									background: 0
 									}
 								);
 							},
