@@ -9,9 +9,9 @@
 
 	<link href="/css/chessboard-0.css" rel="stylesheet" type="text/css">
 	<script src="/js/pgnexpansion.js" type="text/javascript"></script>
-	<script src="/js/pgnweb.js" type="text/javascript"></script>
+<!--    <script src="/js/pgnweb.js" type="text/javascript"></script> -->
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-	<script src="/js/chess.js"></script>
+<!--	<script src="/js/chess.js"></script> -->
 	<script src="/js/chessboard-0.js" type="text/javascript"></script>
 	<script src="/js/jquery.magnific-popup.min.js"></script>
 
@@ -208,8 +208,8 @@
 			var board = new ChessBoard('board', 'start');
 			var $aa = $("#board");
 
-			var chess = new Chess();
-			var pgn = new pgnParse();
+	//		var chess = new Chess();
+	//		var pgn = new pgnParse();
 			var cursorCur = [0];
 			var moves = []
 			,pgnmove = {};

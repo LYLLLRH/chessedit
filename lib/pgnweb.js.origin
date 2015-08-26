@@ -1,5 +1,6 @@
-
-var pgn = (function() {
+;
+(function() {
+    window['pgnParse'] = window['pgnParse'] || function() {
         var o = function(k, v, o, l) {
                 for (o = o || {}, l = k.length; l--; o[k[l]] = v);
                 return o
@@ -894,7 +895,7 @@ var pgn = (function() {
                             break;
                     }
                 },
-                rules: [/^(?:\s+)/, /^(?:;[^\r\n]*)/, /^(?:\{(\\.|[^}])*\})/, /^(?:(1-0|0-1|1\/2-1\/2|\*))/, /^(?:[0-9]+\.*)/, /^(?:\.+)/, /^(?:(O-O-O|O-O)(#|\+|!!|\?\?|!\?|\?!|!|\?)?)/, /^(?:([PNBRQK])?([a-h][1-8]|[a-h]|[1-8])?([-x])?([a-h][1-8])(=?([NBRQ]))?(#|\+)?)/, /^(?:[-A-Za-z0-9_#=:\+]+)/, /^(?:(\+=|=\+|\+\/-|-\/\+|\+--|--\+|&|\+-|-\+|zz|@|\^|=\/&|=|>>|<<|\/\/|\|\||->\/<-|->))/, /^(?:(!!|\?\?|!\?|\?!|!|\?))/, /^(?:"(\\.|[^"])*")/, /^(?:\$[0-9]+)/, /^(?:\[)/, /^(?:\])/, /^(?:\()/, /^(?:\))/, /^(?:$)/],
+                rules: [/^(?:\s+)/, /^(?:;[^\r\n]*)/, /^(?:\{(\\.|[^}])*\})/, /^(?:(1-0|0-1|1\/2-1\/2|\*))/, /^(?:[0-9]+\.*)/, /^(?:\.+)/, /^(?:(O-O-O|O-O)(!!|\?\?|!\?|\?!|!|\?)?)/, /^(?:([PNBRQK])?([a-h][1-8]|[a-h]|[1-8])?([-x])?([a-h][1-8])(=?([NBRQ]))?(#|\+)?)/, /^(?:[-A-Za-z0-9_#=:\+]+)/, /^(?:(\+=|=\+|\+\/-|-\/\+|\+--|--\+|&|\+-|-\+|zz|@|\^|=\/&|=|>>|<<|\/\/|\|\||->\/<-|->))/, /^(?:(!!|\?\?|!\?|\?!|!|\?))/, /^(?:"(\\.|[^"])*")/, /^(?:\$[0-9]+)/, /^(?:\[)/, /^(?:\])/, /^(?:\()/, /^(?:\))/, /^(?:$)/],
                 conditions: {
                     "INITIAL": {
                         "rules": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
@@ -923,21 +924,5 @@ var pgn = (function() {
         Parser.prototype = parser;
         parser.Parser = Parser;
         return new Parser;
-    
-})();
-if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = pgn;
-exports.Parser = pgn.Parser;
-exports.parse = function () { return pgn.parse.apply(pgn, arguments); };
-exports.main = function commonjsMain(args) {
-    if (!args[1]) {
-        console.log('Usage: '+args[0]+' FILE');
-        process.exit(1);
     }
-    var source = require('fs').readFileSync(require('path').normalize(args[1]), "utf8");
-    return exports.parser.parse(source);
-};
-if (typeof module !== 'undefined' && require.main === module) {
-  exports.main(process.argv.slice(1));
-}
-}
+})();

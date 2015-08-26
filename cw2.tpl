@@ -1,9 +1,10 @@
     // Tmplate Part2
-    $("#gameuser").text (game.gameplay);   // 需要在服务器端设置
-	$("#gameinfo").text (game.gameinfo); // 需要在服务器端设置
+    $("#gameuser").text (gameplay);   // 需要在服务器端设置
+	$("#gameinfo").text (gameinfo); // 需要在服务器端设置
 	// strObj 需要在服务器端设置
 
-    initialStatus(game.pgn);
+    //initialStatus(game.pgn);
+    moves = JSON.parse(movesJSON);
 
 
 
