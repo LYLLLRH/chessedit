@@ -5,12 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Chess</title>
 
-	<link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 
 	<link href="/css/chessboard-0.css" rel="stylesheet" type="text/css">
 	<script src="/js/pgnexpansion.js" type="text/javascript"></script>
 <!--    <script src="/js/pgnweb.js" type="text/javascript"></script> -->
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 <!--	<script src="/js/chess.js"></script> -->
 	<script src="/js/chessboard-0.js" type="text/javascript"></script>
 	<script src="/js/jquery.magnific-popup.min.js"></script>

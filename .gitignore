@@ -15,3 +15,7 @@ results
 /lib/sf_engine/
 
 .settings/launch.json
+
+public/css/font-awesome.min.css
+
+public/js/jquery.min.js

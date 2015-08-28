@@ -11,6 +11,7 @@ var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式P
 var pgnadd = require('./routes/pgnadd');
 var pgnlist = require('./routes/pgnlist');
 var pgnget = require('./routes/pgnget');
+var puzzlewidget = require('./routes/puzzlewidget'); 
 
 
 var app = express();
@@ -33,6 +34,7 @@ app.post('/pgn/add',pgnadd);
 app.get('/pgn/list/:user',pgnlist);
 app.get('/s/:id',pgnget);
 app.get('/h/:id',chesswidget);
+app.get('/p/:id',puzzlewidget);
 
 
 
