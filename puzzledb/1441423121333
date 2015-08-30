@@ -1,0 +1,14 @@
+[Event "#4231 Chess: 5334 Problems, Combinations, and Games by László Polgár"]
+[Site "Copyright 1994 Könemann"]
+[Date "1994.??.??"]
+[Round "-"]
+[White "Mate in three"]
+[Black "Black to move"]
+[Result "*"]
+[FEN "1Q6/5pk1/4p1p1/8/4B2q/8/r2r2P1/2R1R1K1 b - - 0 1"]
+
+1...Rxg2+ 2.Bxg2 
+    ( 2.Kf1 Qf2# )
+2...Qf2+ 3.Kh1 
+    ( 3.Kh2 Qxg2# )
+3...Qxg2# *

@@ -1,0 +1,153 @@
+
+		* {
+			margin: 0px;
+			padding: 0px;
+			font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+		}
+		a ,i {
+			cursor :pointer;
+			text-decoration: none;
+		}
+
+		.mainboard{
+			width: 562px;
+			height: 449px;
+			position: relative;
+
+		}
+
+		.gamehead {
+			width: 562px;
+			height: 54px;
+			background: #f3f3f3
+
+		}
+
+		.gameuser {
+			margin-bottom: 2px;
+			font-weight: bold;
+			padding: 11px 14px;
+			padding-bottom: 0px;
+			font-size: 14px;
+		}
+		.gameinfo{
+			padding-left: 14px;
+			font-size: 12px;
+		}
+
+		.board{
+			width: 360px;
+			height: 360px;
+			float: left;
+			background: #f3f3f3
+
+
+		}
+		.moves{
+			width: 196px;
+			height: 360px;
+			margin-left: -5px;
+			float: right;
+			border-right: 2px solid #f3f3f3;
+			position: relative;
+		}
+
+		#movemsg{
+
+		    position: absolute;
+		    width: 184px;
+		    height: 30px;
+		    left: 4px;
+		    bottom: 10px;
+		    text-align: center;
+		    background-color: #DEE3E6;
+		    line-height: 2;
+	
+		}
+		.moving{
+			width:562px;
+			height: 35px;
+			background: #f3f3f3
+
+		}
+
+		.movingleft{
+			width: 360px;
+			height: 35px;
+			float: left;
+		}
+
+		.movingright {
+			widows: 196px;
+			height: 35px;
+			float: right;
+		}
+
+		.rav { color: #839090;display: inline;}
+
+		.clear {
+			clear:both;
+		}
+
+		.txtAreaPgn {
+			height: 360px;
+			overflow: auto;
+			font-size: 14px;
+			line-height: 22px;
+			outline: none;
+		}
+
+		.moveBut {
+			float: left;
+			width: 39px;
+			padding-top:10px;
+
+		}
+
+		.pgnShare {
+			color:black;
+			outline:none;
+		}
+
+		.moveHilight
+		{	background: yellow;
+			color:#00f;
+		}
+
+		span.comment,span.rate{
+			background: #eeeeee;font-style: italic;font-weight: bolder;font-szie:11px;
+		}
+		.posHighlight_g {
+			background : radial-gradient(ellipse at center center , rgba(155, 199, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+		.posHighlight_r {
+			background : radial-gradient(ellipse at center center , rgba(255, 0, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+		.posHighlight_b {
+			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+		.white-popup {
+		  position: relative;
+		  background: #f3f3f3;
+		  padding: 20px;
+		  width: auto;
+		  max-width: 500px;
+		  margin: 20px auto;
+			box-shadow: 0px 1px 2px 3px grey;
+		}
+
+		.moveSelectPop {
+
+			position: relative;
+			background: #FFF;
+			max-width: 500px;
+			margin: 20px auto;
+			box-shadow: 0px 1px 2px 3px grey;
+			width: 150px;
+
+		}
+		.moveSelectPop  .selected {background: #eee;}
+		.moveUl:hover {cursor: pointer;}
