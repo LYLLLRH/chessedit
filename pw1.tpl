@@ -29,7 +29,7 @@
 		<div class="moving clear">
 			<div class="movingleft">
 				<div style="float:left;margin-left:10px;padding-top:8px">
-					<a href="#pgnsharepopup" class="pgnShare"><i class="fa fa-fw fa-share-square-o"></i></a>
+					<a href="#pgnsharepopup" class="pgnShare"><i class="fa fa-fw fa-eye"></i></a>
 				</div>
 				<div style="float:right;margin-right:10px;padding-top:8px" id="pgnflip"><i class="fa fa-fw fa-retweet"></i></div>
 			</div>
