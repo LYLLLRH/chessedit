@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Chess</title>
 
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -21,11 +21,18 @@
 			<div class="gameuser" id="gameuser"></div>
 			<div class="gameinfo" id="gameinfo"></div>
 		</div>
+
+		<div class="gameboard">
 		<div class="board" id="board"></div>
 		<div class="moves">
-			<div id="movemsg"></div>
-			<div class="txtAreaPgn" id="pgnArea"  tabindex="1" placeholder="PGN"> 1. <a id="1">e4 ?? </a> </div>
+			
+			<div class="txtAreaPgn" id="pgnArea"  tabindex="1" placeholder="PGN"> 1. <a id="1">e4 ?? </a>
+			</div>
+			
 		</div>
+
+		</div>
+		<div id="movemsg"></div>
 		<div class="moving clear">
 			<div class="movingleft">
 				<div style="float:left;margin-left:10px;padding-top:8px">

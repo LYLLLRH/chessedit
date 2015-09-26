@@ -2,7 +2,7 @@
 		* {
 			margin: 0px;
 			padding: 0px;
-			font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+			font-family: font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
 		}
 		a ,i {
 			cursor :pointer;
@@ -10,15 +10,15 @@
 		}
 
 		.mainboard{
-			width: 562px;
-			height: 449px;
+			width: 100%;
+			/*height: 449px;*/
 			position: relative;
 
 		}
 
 		.gamehead {
-			width: 562px;
-			height: 54px;
+			width: 100%;
+			height: 60px;
 			background: #f3f3f3
 
 		}
@@ -35,17 +35,23 @@
 			font-size: 12px;
 		}
 
+		.gameboard{
+			width:100%;
+			position: relative;
+		}
+
 		.board{
-			width: 360px;
-			height: 360px;
+			width: 64%;
+			/*height: 360px;*/
 			float: left;
 			background: #f3f3f3
 
 
 		}
 		.moves{
-			width: 196px;
-			height: 360px;
+			width: 36%;
+			/*height: 360px;*/
+			height: 100%;
 			margin-left: -5px;
 			float: right;
 			border-right: 2px solid #f3f3f3;
@@ -55,30 +61,30 @@
 		#movemsg{
 
 		    position: absolute;
-		    width: 184px;
+		    width: 28%;
 		    height: 30px;
-		    left: 4px;
-		    bottom: 10px;
+		    right: 4%;
+		    bottom: 40px;
 		    text-align: center;
 		    background-color: #DEE3E6;
 		    line-height: 2;
 	
 		}
 		.moving{
-			width:562px;
+			width:100%;
 			height: 35px;
 			background: #f3f3f3
 
 		}
 
 		.movingleft{
-			width: 360px;
+			width: 64%;
 			height: 35px;
 			float: left;
 		}
 
 		.movingright {
-			widows: 196px;
+			width: 36%;
 			height: 35px;
 			float: right;
 		}
@@ -90,7 +96,7 @@
 		}
 
 		.txtAreaPgn {
-			height: 360px;
+			height: 64%;
 			overflow: auto;
 			font-size: 14px;
 			line-height: 22px;
@@ -99,7 +105,7 @@
 
 		.moveBut {
 			float: left;
-			width: 39px;
+			width: 20%;
 			padding-top:10px;
 
 		}
