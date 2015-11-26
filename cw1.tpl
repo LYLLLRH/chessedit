@@ -29,6 +29,97 @@
 			text-decoration: none;
 		}
 
+		@media only screen and (min-width: 320px) and (max-width: 420px) {
+			.mainboard{
+				width: 300px;
+				height: 192px;
+				position: relative;
+			}
+
+			.gamehead {
+				width: 100%;
+				height: 54px;
+				background: #f3f3f3
+
+			}
+
+			.gameuser {
+				margin-bottom: 1px;
+				font-weight: bold;
+				padding: 7px 10px;
+				padding-bottom: 0px;
+				font-size: 11px;
+			}
+			.gameinfo{
+				padding-left: 10px;
+				font-size: 10px;
+			}
+
+			.board{
+				width: 64%;
+				height: 192px;
+				float: left;
+				background: #f3f3f3
+
+
+			}
+			.moves{
+				width: 35%;
+				height: 192px;
+				margin-left: -2px;
+				float: right;
+				border-right: 1px solid #f3f3f3;
+
+			}
+			.moving{
+				width:100%;
+				height: 30px;
+				background: #f3f3f3
+
+			}
+
+			.movingleft{
+				width: 64%;
+				height: 30px;
+				float: left;
+			}
+
+			.movingright {
+				widows: 35%;
+				height: 30px;
+				float: right;
+			}
+
+
+			.txtAreaPgn {
+				height: 192px;
+				overflow: auto;
+				font-size: 11px;
+				line-height: 18px;
+				outline: none;
+			}
+
+			.moveBut {
+				float: left;
+				width: 20px;
+				padding-top:8px;
+
+			}
+
+
+			span.comment,span.rate{
+				background: #eeeeee;font-style: italic;font-weight: bolder;font-szie:11px;
+			}			
+
+		}
+
+		@media only screen and (min-width: 421px) and (max-width: 900px){
+			
+		}
+
+		@media only screen and (min-width: 900px)  {
+				
+
 		.mainboard{
 			width: 562px;
 			height: 449px;
@@ -37,7 +128,7 @@
 		}
 
 		.gamehead {
-			width: 562px;
+			width: 100%;
 			height: 54px;
 			background: #f3f3f3
 
@@ -56,7 +147,7 @@
 		}
 
 		.board{
-			width: 360px;
+			width: 64%;
 			height: 360px;
 			float: left;
 			background: #f3f3f3
@@ -64,37 +155,32 @@
 
 		}
 		.moves{
-			width: 196px;
+			width: 35%;
 			height: 360px;
-			margin-left: -5px;
+			margin-left: -3px;
 			float: right;
 			border-right: 2px solid #f3f3f3;
 
 		}
 		.moving{
-			width:562px;
+			width:100%;
 			height: 35px;
 			background: #f3f3f3
 
 		}
 
 		.movingleft{
-			width: 360px;
+			width: 64%;
 			height: 35px;
 			float: left;
 		}
 
 		.movingright {
-			widows: 196px;
+			widows: 35%;
 			height: 35px;
 			float: right;
 		}
 
-		.rav { color: #839090;display: inline;}
-
-		.clear {
-			clear:both;
-		}
 
 		.txtAreaPgn {
 			height: 360px;
@@ -111,31 +197,12 @@
 
 		}
 
-		.pgnShare {
-			color:black;
-			outline:none;
-		}
-
-		.moveHilight
-		{	background: yellow;
-			color:#00f;
-		}
 
 		span.comment,span.rate{
 			background: #eeeeee;font-style: italic;font-weight: bolder;font-szie:11px;
 		}
-		.posHighlight_g {
-			background : radial-gradient(ellipse at center center , rgba(155, 199, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
 
-		.posHighlight_r {
-			background : radial-gradient(ellipse at center center , rgba(255, 0, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
-
-		.posHighlight_b {
-			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
-		}
-
+	}
 		.white-popup {
 		  position: relative;
 		  background: #f3f3f3;
@@ -155,6 +222,37 @@
 			box-shadow: 0px 1px 2px 3px grey;
 			width: 150px;
 
+		}
+
+	
+
+			.posHighlight_g {
+			background : radial-gradient(ellipse at center center , rgba(155, 199, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+		.posHighlight_r {
+			background : radial-gradient(ellipse at center center , rgba(255, 0, 0, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+		.posHighlight_b {
+			background : radial-gradient(ellipse at center center , rgba(0, 0, 255, 0.81) 0%, rgba(155, 199, 0, 0) 100%) repeat scroll 0% 0% transparent;
+		}
+
+
+		.rav { color: #839090;display: inline;}
+
+		.clear {
+			clear:both;
+		}
+
+
+		.pgnShare {
+			color:black;
+			outline:none;
+		}
+	.moveHilight
+		{	background: yellow;
+			color:#00f;
 		}
 		.moveSelectPop  .selected {background: #eee;}
 		.moveUl:hover {cursor: pointer;}
