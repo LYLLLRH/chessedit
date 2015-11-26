@@ -117,7 +117,7 @@
 			
 		}
 
-		@media only screen and (min-width: 900px)  {
+		@media only screen and (min-width: 901px)  {
 				
 
 		.mainboard{
