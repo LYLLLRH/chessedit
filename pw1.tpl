@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Chess</title>
-
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/widget.css">
 	<link href="/css/chessboard-0.css" rel="stylesheet" type="text/css">
@@ -21,6 +21,7 @@
 			<div class="gameuser" id="gameuser"></div>
 			<div class="gameinfo" id="gameinfo"></div>
 		</div>
+
 		<div class="board" id="board"></div>
 		<div class="moves">
 			<div id="movemsg"></div>

@@ -13,11 +13,17 @@ function nagConvert (nag) {
 
 function boardRefresh(board, $board, moves, obj,startFen) {
     var theObj = obj.slice(0);
+    var orientation;
     lineCells = obj2LineBoard(moves, obj);
+    orientation = board.orientation();
     if (!startFen) {
+        
         board.position(obj2Fen(moves, obj), true); 
+        board.orientation(orientation);
     } else {
+      
         board.position(startFen,true);
+        board.orientation(orientation);
     }
     if ($board.find(".board-b72b1").find(".lineControl").length > 0) {
         $board.find(".board-b72b1").find(".lineControl").remove();

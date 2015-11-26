@@ -34,7 +34,13 @@
 			padding-left: 14px;
 			font-size: 12px;
 		}
+		
+		.gameselect{
+			width: 562px;
+			height: 20px;
+			background: #f3f3f3;
 
+		}
 		.board{
 			width: 360px;
 			height: 360px;

@@ -73,9 +73,11 @@
     	});
 
     $("#pgnflip").click(function(event) {
+
     	board.flip();
-    	boardRefresh(board,$aa,moves,cursorCur);
+    	boardRefresh(board,$aa,moves,cursorCur,moves?startFen:null);
     	pgnHilightChange($aa,cursorCur,1);
+       
     });
 
     function stepBack() {
