@@ -29,10 +29,10 @@
 		</div>
 		<div class="moving clear">
 			<div class="movingleft">
-				<div style="float:left;margin-left:10px;padding-top:8px">
+				<div class="shareBut" id>
 					<a href="#pgnsharepopup" class="pgnShare"><i class="fa fa-fw fa-eye"></i></a>
 				</div>
-				<div style="float:right;margin-right:10px;padding-top:8px" id="pgnflip"><i class="fa fa-fw fa-retweet"></i></div>
+				<div class="flipBut" id="pgnflip"><i class="fa fa-fw fa-retweet"></i></div>
 			</div>
 			<div class="movingright">
 				<div class="moveBut" id="pgnStartPosition"><i class="fa fa-step-backward fa-fw"></i></div>
@@ -68,3 +68,27 @@
 			var resolvCur = '';
 			var moveFirst =1 ; //1  为白先走，2为黑先走，在做题目的时候需要；
 			var timer,autoMove = false;
+			var board;
+			
+			if (matchMedia) {
+				var mq = window.matchMedia("(min-width: 478px)");
+				mq.addListener(WidthChange);
+				WidthChange(mq);
+			}
+
+			// media query change
+			function WidthChange(mq) {
+				if(board) { board.resize();}
+
+			// if (mq.matches) {
+
+			// 	console.log("width>=500");
+			// 	// window width is at least 500px
+			// }
+			// else {
+			// 	console.log("width<500");
+			// // window width is less than 500px
+			// }
+
+			}
+

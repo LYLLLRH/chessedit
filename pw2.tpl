@@ -37,7 +37,7 @@
         		onSnapEnd: onPgnSnapEnd
 			};
 
-			var board = new ChessBoard('board', cfg);
+			board = new ChessBoard('board', cfg);
 			var $aa = $("#board");
 			chessEngine.load(startFen);
 

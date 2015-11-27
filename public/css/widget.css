@@ -8,107 +8,351 @@
 			cursor :pointer;
 			text-decoration: none;
 		}
+/*--iphone 4,5---*/
+		@media only screen and (min-width: 320px) and (max-width: 359px) {
+			.mainboard{
+				width: 320px;
+				height: 200px;
+				position: relative;
+			}
+			.gamehead {
+				width: 320px;
+				height: 54px;
+				background: #f3f3f3
+			}
+			.gameuser {
+				margin-bottom: 1px;
+				font-weight: bold;
+				padding: 5px 8px;
+				padding-bottom: 0px;
+				font-size: 10px;
+			}
+			.gameinfo{
+				padding-left: 5px;
+				font-size: 9px;
+			}
+			.board{
+				width: 200px;
+				height: 200px;
+				float: left;
+				background: #f3f3f3
+			}
+			.moves{
+				width: 116px;
+				height: 200px;
+				margin-left: -3px;
+				float: right;
+				border-right: 1px solid #f3f3f3;
+				position: relative;
+			}
+			#movemsg{
+			    position: absolute;
+			    width: 100px;
+			    height: 20px;
+			    left: 6px;
+			    bottom: 10px;
+			    text-align: center;
+			    background-color: #DEE3E6;
+			    line-height: 2;
+			    font-size: 10px;			    
+			}
+			.moving{
+				width: 320px;
+				height: 20px;
+				background: #f3f3f3
+			}
+			.movingleft{
+				width: 200px;
+				height: 20px;
+				float: left;
+			}
+			.movingright {
+				widows: 116px;
+				height: 20px;
+				float: right;
+			}
+			.txtAreaPgn {
+				height: 200px;
+				overflow: auto;
+				font-size: 11px;
+				line-height: 16px;
+				outline: none;
+			}		
+			.moveBut {
+				float: left;
+				width: 23px;
+				padding-top:1px;
+			}		
+			.shareBut {
+				float:left;
+				margin-left:10px;
+			}
+			.flipBut {
+				float:right;
+				margin-right:10px;	
+			}			
+		}
+/*--iphone 6,6s,  samsung s4,5,6 -----*/
+		@media only screen and (min-width: 360px) and (max-width: 409px){
+			.mainboard{
+				width: 360px;
+				height: 232px;
+				position: relative;
+			}
+			.gamehead {
+				width: 360px;
+				height: 54px;
+				background: #f3f3f3
+			}
+			.gameuser {
+				margin-bottom: 1px;
+				font-weight: bold;
+				padding: 7px 10px;
+				padding-bottom: 0px;
+				font-size: 10px;
+			}
+			.gameinfo{
+				padding-left: 7px;
+				font-size: 10px;
+			}
+			.board{
+				width: 232px;
+				height: 232px;
+				float: left;
+				background: #f3f3f3
+			}
+			.moves{
+				width: 125px;
+				height: 232px;
+				margin-left: -3px;
+				float: right;
+				border-right: 2px solid #f3f3f3;
+				position: relative;
+			}
+			#movemsg{
+			    position: absolute;
+			    width: 100px;
+			    height: 20px;
+			    left: 11px;
+			    bottom: 10px;
+			    text-align: center;
+			    background-color: #DEE3E6;
+			    line-height: 2;
+			    font-size: 11px;			    
+			}
+			.moving{
+				width: 360px;
+				height: 20px;
+				background: #f3f3f3
+			}
+			.movingleft{
+				width: 232px;
+				height: 20px;
+				float: left;
+			}
+			.movingright {
+				widows: 125px;
+				height: 20px;
+				float: right;
+			}
+			.txtAreaPgn {
+				height: 232px;
+				overflow: auto;
+				font-size: 12px;
+				line-height: 17px;
+				outline: none;
+			}		
+			.moveBut {
+				float: left;
+				width: 25px;
 
-		.mainboard{
-			width: 562px;
-			height: 449px;
-			position: relative;
-
+			}		
+			.shareBut {
+				float:left;
+				margin-left:10px;
+			}
+			.flipBut {
+				float:right;
+				margin-right:10px;	
+			}			
+		}
+		/*---iphone 6 plus-----*/
+		@media only screen and (min-width: 410px) and (max-width: 579px) {
+			.mainboard{
+				width: 410px;
+				height: 264px;
+				position: relative;
+			}
+			.gamehead {
+				width: 410px;
+				height: 54px;
+				background: #f3f3f3
+			}
+			.gameuser {
+				margin-bottom: 1px;
+				font-weight: bold;
+				padding: 6px 9px;
+				padding-bottom: 0px;
+				font-size: 11px;
+			}
+			.gameinfo{
+				padding-left: 6px;
+				font-size: 9px;
+			}
+			.board{
+				width: 264px;
+				height: 264px;
+				float: left;
+				background: #f3f3f3
+			}
+			.moves{
+				width: 144px;
+				height: 264px;
+				margin-left: -3px;
+				float: right;
+				border-right: 2px solid #f3f3f3;
+				position: relative;
+			}
+			#movemsg{
+			    position: absolute;
+			    width: 100px;
+			    height: 20px;
+			    left: 20px;
+			    bottom: 10px;
+			    text-align: center;
+			    background-color: #DEE3E6;
+			    line-height: 2;
+			    font-size: 11px;			    
+			}
+			.moving{
+				width: 410px;
+				height: 20px;
+				background: #f3f3f3
+			}
+			.movingleft{
+				width: 264px;
+				height: 20px;
+				float: left;
+			}
+			.movingright {
+				widows: 144px;
+				height: 20px;
+				float: right;
+			}
+			.txtAreaPgn {
+				height: 264px;
+				overflow: auto;
+				font-size: 12px;
+				line-height: 18px;
+				outline: none;
+			}		
+			.moveBut {
+				float: left;
+				width: 28px;
+			}		
+			.shareBut {
+				float:left;
+				margin-left:10px;
+			}
+			.flipBut {
+				float:right;
+				margin-right:10px;	
+			}			
 		}
 
-		.gamehead {
-			width: 562px;
-			height: 54px;
-			background: #f3f3f3
-
+/*--- width > 580 */
+		@media only screen and (min-width: 580px) {			
+			.mainboard{
+				width: 562px;
+				height: 449px;
+				position: relative;
+			}
+			.gamehead {
+				width: 562px;
+				height: 54px;
+				background: #f3f3f3
+			}
+			.gameuser {
+				margin-bottom: 2px;
+				font-weight: bold;
+				padding: 11px 14px;
+				padding-bottom: 0px;
+				font-size: 14px;
+			}
+			.gameinfo{
+				padding-left: 14px;
+				font-size: 12px;
+			}
+			.board{
+				width: 360px;
+				height: 360px;
+				float: left;
+				background: #f3f3f3
+			}
+			.moves{
+				width: 196px;
+				height: 360px;
+				margin-left: -5px;
+				float: right;
+				border-right: 2px solid #f3f3f3;
+				position: relative;
+			}
+			#movemsg{
+			    position: absolute;
+			    width: 184px;
+			    height: 30px;
+			    left: 4px;
+			    bottom: 10px;
+			    text-align: center;
+			    background-color: #DEE3E6;
+			    line-height: 2;
+			}
+			.moving{
+				width:562px;
+				height: 35px;
+				background: #f3f3f3
+			}
+			.movingleft{
+				width: 360px;
+				height: 35px;
+				float: left;
+			}
+			.movingright {
+				widows: 196px;
+				height: 35px;
+				float: right;
+			}
+			.txtAreaPgn {
+				height: 360px;
+				overflow: auto;
+				font-size: 14px;
+				line-height: 22px;
+				outline: none;
+			}		
+			.moveBut {
+				float: left;
+				width: 39px;
+				padding-top:10px;
+			}	
+			.shareBut {
+				float:left;
+				margin-left:10px;
+				padding-top:8px;	
+			}
+			.flipBut {
+				float:right;
+				margin-right:10px;
+				padding-top:8px;	
+			}
 		}
 
-		.gameuser {
-			margin-bottom: 2px;
-			font-weight: bold;
-			padding: 11px 14px;
-			padding-bottom: 0px;
-			font-size: 14px;
-		}
-		.gameinfo{
-			padding-left: 14px;
-			font-size: 12px;
-		}
-		
-		.gameselect{
-			width: 562px;
-			height: 20px;
-			background: #f3f3f3;
-
-		}
-		.board{
-			width: 360px;
-			height: 360px;
-			float: left;
-			background: #f3f3f3
-
-
-		}
-		.moves{
-			width: 196px;
-			height: 360px;
-			margin-left: -5px;
-			float: right;
-			border-right: 2px solid #f3f3f3;
-			position: relative;
-		}
-
-		#movemsg{
-
-		    position: absolute;
-		    width: 184px;
-		    height: 30px;
-		    left: 4px;
-		    bottom: 10px;
-		    text-align: center;
-		    background-color: #DEE3E6;
-		    line-height: 2;
-	
-		}
-		.moving{
-			width:562px;
-			height: 35px;
-			background: #f3f3f3
-
-		}
-
-		.movingleft{
-			width: 360px;
-			height: 35px;
-			float: left;
-		}
-
-		.movingright {
-			widows: 196px;
-			height: 35px;
-			float: right;
-		}
-
+/*---public---*/
 		.rav { color: #839090;display: inline;}
 
 		.clear {
 			clear:both;
 		}
 
-		.txtAreaPgn {
-			height: 360px;
-			overflow: auto;
-			font-size: 14px;
-			line-height: 22px;
-			outline: none;
-		}
-
-		.moveBut {
-			float: left;
-			width: 39px;
-			padding-top:10px;
-
-		}
 
 		.pgnShare {
 			color:black;
