@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1.0 ,user-scalable=no">
 	<title>Chess</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -27,6 +27,7 @@
 			<div id="movemsg"></div>
 			<div class="txtAreaPgn" id="pgnArea"  tabindex="1" placeholder="PGN"> 1. <a id="1">e4 ?? </a> </div>
 		</div>
+		<div class="clear"><div>
 		<div class="moving clear">
 			<div class="movingleft">
 				<div class="shareBut" id>
@@ -78,7 +79,9 @@
 
 			// media query change
 			function WidthChange(mq) {
+
 				if(board) { board.resize();}
+				console.log("width change");
 
 			// if (mq.matches) {
 
@@ -89,6 +92,10 @@
 			// 	console.log("width<500");
 			// // window width is less than 500px
 			// }
-
 			}
+			// $(window).on('orientationchange', function() {
+  	// 			console.log("Change!");
+  	// 			if(board) { board.resize();}
+			// });
+
 

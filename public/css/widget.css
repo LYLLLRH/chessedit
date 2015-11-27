@@ -9,7 +9,7 @@
 			text-decoration: none;
 		}
 /*--iphone 4,5---*/
-		@media only screen and (min-width: 320px) and (max-width: 359px) {
+		@media only screen and (min-width: 300px) and (max-width: 359px) {
 			.mainboard{
 				width: 320px;
 				height: 200px;
@@ -401,3 +401,4 @@
 		}
 		.moveSelectPop  .selected {background: #eee;}
 		.moveUl:hover {cursor: pointer;}
+
