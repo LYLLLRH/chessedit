@@ -92,9 +92,9 @@
 			// // window width is less than 500px
 			// }
 			}
-			// $(window).on('orientationchange', function() {
-  	// 			console.log("Change!");
-  	// 			if(board) { board.resize();}
-			// });
+			$(window).on('orientationchange', function() {
+  				console.log("Change!");
+  				if(board) { board.resize();}
+			});
 
 
