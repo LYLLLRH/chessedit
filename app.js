@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var chesswidget = require('./routes/chesswidget');  // 支持NodeBB的嵌入式PGN；
 var pgnadd = require('./routes/pgnadd');
+var puzzleadd = require('./routes/puzzleadd');
 var pgnlist = require('./routes/pgnlist');
 var pgnget = require('./routes/pgnget');
 var puzzlewidget = require('./routes/puzzlewidget'); 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public'),{maxAge:60*60*1000,hidden:
 app.use('/', routes);
 app.use('/users', users);
 app.post('/pgn/add',pgnadd);
+app.post('/puzzle/add',puzzleadd);
 app.get('/pgn/list/:user',pgnlist);
 app.get('/s/:id',pgnget);
 app.get('/h/:id',chesswidget);

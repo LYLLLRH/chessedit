@@ -12,13 +12,18 @@ function nagConvert (nag) {
 }
 
 function boardRefresh(board, $board, moves, obj,startFen) {
-    var theObj = obj.slice(0);
-    var orientation;
-    lineCells = obj2LineBoard(moves, obj);
+    // var isArray = Array.isArray(moves);
+    if (moves=='') return;
+    var move = Array.isArray(moves) ? obj2Node(moves,obj) : moves ;
+    // var theObj = obj.slice(0);
+    var orientation,
+        lineCells = obj2LineBoard(move),
+        mm = move.mm ,
+        fen = move.fen;
+
     orientation = board.orientation();
-    if (!startFen) {
-        
-        board.position(obj2Fen(moves, obj), true); 
+    if (!startFen) {        
+        board.position(fen, true); 
         board.orientation(orientation);
     } else {
       
@@ -52,9 +57,8 @@ function boardRefresh(board, $board, moves, obj,startFen) {
 
         }
     }
-    var mm = obj2MM(moves,obj);
-    if (mm){
 
+    if (mm){
        $board.find(".board-b72b1").find(".square-" + mm.from).addClass("posHighlight").addClass("posHighlight_" + 'g');
        $board.find(".board-b72b1").find(".square-" + mm.to).addClass("posHighlight").addClass("posHighlight_" + 'g');
     }
@@ -390,6 +394,7 @@ function obj2San(moves, cursorCur) {
 function obj2Fen(moves, cursorCur) {
     var move;
     var cursor = cursorCur.slice(0);
+    if (moves == '') return false;
     if (cursor.length == 1) {
         return cursor[0] == 0 ? "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" : moves[cursor[0] - 1]["fen"];
     } else {
@@ -416,47 +421,37 @@ function obj2MM(moves, cursorCur) {
 }
 
 function obj2LineBoard(moves, cursorCur) {
-    var move;
-    var cursor = cursorCur.slice(0);
-    if (cursor.length == 1) {
-        if (cursor[0] == 0 || !moves[cursor[0] - 1] || !moves[cursor[0] - 1].comments) {
-            return false;
-        }
-        var comments = moves[cursor[0] - 1].comments;
-        var retObj = {};
-        var lines = new Array();
-        var positions = new Array();
-        for (var i = 0; i < comments.length; i++) {
-            if (line = comments[i].match(regLine)) {
-                lines.push({
-                    s: line[1],
-                    e: line[2],
-                    c: line[3]
-                });
-            } else if (boardCell = comments[i].match(regBoardCell)) {
-                existing = true;
-                positions.push({
-                    p: boardCell[1],
-                    c: boardCell[2]
-                });
-            }
-        }
-        return (lines.length > 0 || positions.length > 0) ? {
-            lines: lines,
-            positions: positions
-        } : false;
-    } else {
-        if (moves[cursor[0] - 1]["rav"]) {
-            return obj2LineBoard(moves[cursor.shift() - 1]["rav"][cursor.shift() - 1], cursor);
-        } else {
-            return obj2LineBoard(moves[cursor.shift() - 1], cursor);
+    var move = Array.isArray(moves) ? obj2Node(moves,cursorCur) : moves,   
+        comments = move.comments,
+        retObj = {},
+        lines = new Array(),
+        positions = new Array();
+    if (!comments) return false;    
+    for (var i = 0; i < comments.length; i++) {
+        if (line = comments[i].match(regLine)) {
+            lines.push({
+                s: line[1],
+                e: line[2],
+                c: line[3]
+            });
+        } else if (boardCell = comments[i].match(regBoardCell)) {
+            existing = true;
+            positions.push({
+                p: boardCell[1],
+                c: boardCell[2]
+            });
         }
     }
+    return (lines.length > 0 || positions.length > 0) ? {
+        lines: lines,
+        positions: positions
+    } : false;
 }
 
 function obj2Node(moves, cursorCur) {
     var move;
     var cursor = cursorCur.slice(0);
+    if (moves == '') return false;
     if (cursor.length == 1) {
         if (cursor[0] == 0) {
             return false;
@@ -487,6 +482,25 @@ function objAddFens(moves, fen, callback) {
 
         }
         callback.call(null, moves[i], fen);
+        fen = moves[i].fen;
+    }
+}
+
+function objAddFens(moves, fen) {
+    for (var i = 0; i < moves.length; i++) {
+        if (moves[i].rav) {
+            var temp = moves[i].rav;
+            for (var j = 0; j < temp.length; j++) {
+                objAddFens(moves[i].rav[j], fen);
+            }
+         }   
+
+        chess.load(fen);
+        var san = moves[i].san.split(" ")[0];
+        chess.move(san);
+        moves[i].fen = chess.fen();
+        var mm = chess.history({verbose:true}).pop();
+        moves[i].mm = {'from':mm.from || '','to':mm.to || ''};       
         fen = moves[i].fen;
     }
 }
@@ -678,12 +692,7 @@ function checkPositionValid(position) {
 	}
 }
 
-function initialStatus(moves,cursorCur,board) {
-	moves = {};
-	cursorCur = [];
-	board.position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-}
 // Delete nodes which after cursorCur,
 function objDelNode(moves,cursorCur){
 	// splice for everynode excepet first node; moves = [0], pgn = null;
@@ -693,6 +702,34 @@ function objDelNode(moves,cursorCur){
 	var index = cursorCur[cursorCur.length-1]-1;
 	node.splice(index,node.length-index+1);
 	return cursor;
+}
+
+function objAddNode(moves,cursorCur,move) {
+
+    if ( moves.length == 0 ) {
+        moves.push ({fen:chess.fen(),oid:"1",san:move.san});
+        return [1];
+    }
+    if ( !curForward(moves,cursorCur)) {
+        var node = obj2ParentNode(moves,cursorCur);
+        cursorCur[cursorCur.length-1] += 1;
+        node.push({fen:chess.fen(),oid:cursorCur.join("-"),san:move.san});
+        return cursorCur;
+    } else {
+        var node = obj2Node(moves,cursorCur);
+
+        if(node.rav) {
+            node.rav.push([{fen:chess.fen(),oid:cursorCur.join("-"),san:move.san}]);
+            cursorCur.push(node.rav.length,1);
+        } else {
+            var newRav = {}
+            newRav = new Array();
+            newRav.push([{fen:chess.fen(),oid:cursorCur.join("-"),san:move.san}]);
+            node.rav = newRav;
+            cursorCur.push(1,1);
+        }
+        return cursorCur;
+    }
 }
 
 // Get node's parents; clear node

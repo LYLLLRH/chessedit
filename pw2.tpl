@@ -24,7 +24,9 @@
 			var pgnData = pgn.parse(data);
 			var gameInfo = getGameUser(pgnData.tagPairs.White,pgnData.tagPairs.Black);
 			$("#gameuser").text(gameInfo);
+            if (pgnData.tagPairs.Event && pgnData.tagPairs.Date) {
 			$("#gameinfo").text (pgnData.tagPairs.Event + ' | ' + pgnData.tagPairs.Date); // 需要在服务器端设置
+            } else {$("#gameinfo").text(" ");}
 			// if (pgninfo.gameplay == '') { pgninfo.gameplay ='White vs Black'; }
 			resolvMoves = pgnData.movetext.moves;
 			startFen = pgnData.tagPairs.FEN;
