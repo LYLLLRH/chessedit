@@ -13,6 +13,15 @@ function nagConvert (nag) {
 
 function boardRefresh(board, $board, moves, obj,startFen) {
     // var isArray = Array.isArray(moves);
+    orientation = board.orientation();
+    if (!startFen) {        
+        board.position(startFen, true); 
+        board.orientation(orientation);
+    } else {
+      
+        board.position(startFen,true);
+        board.orientation(orientation);
+    }
     if (moves=='') return;
     var move = Array.isArray(moves) ? obj2Node(moves,obj) : moves ;
     // var theObj = obj.slice(0);
@@ -21,15 +30,7 @@ function boardRefresh(board, $board, moves, obj,startFen) {
         mm = move.mm ,
         fen = move.fen;
 
-    orientation = board.orientation();
-    if (!startFen) {        
-        board.position(fen, true); 
-        board.orientation(orientation);
-    } else {
-      
-        board.position(startFen,true);
-        board.orientation(orientation);
-    }
+
     if ($board.find(".board-b72b1").find(".lineControl").length > 0) {
         $board.find(".board-b72b1").find(".lineControl").remove();
     }
