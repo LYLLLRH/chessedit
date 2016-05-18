@@ -15,7 +15,7 @@ function boardRefresh(board, $board, moves, obj,startFen) {
     // var isArray = Array.isArray(moves);
     var orientation = board.orientation();
     if (startFen) {        
-        board.position(startFen, true); 
+        board.position(startFen, false); 
         board.orientation(orientation);
         return;
     } else {
@@ -25,7 +25,7 @@ function boardRefresh(board, $board, moves, obj,startFen) {
         mm = move.mm ,
         fen = move.fen;
 
-        board.position(fen,true);
+        board.position(fen,false);
         board.orientation(orientation);
     }
 
@@ -448,17 +448,20 @@ function obj2LineBoard(moves, cursorCur) {
 function obj2Node(moves, cursorCur) {
     var move;
     var cursor = cursorCur.slice(0);
-    if (moves == '') return false;
+    if (moves == '' || cursor.length == 0) return false;
     if (cursor.length == 1) {
         if (cursor[0] == 0) {
             return false;
         }
-        return moves[cursor[0] - 1];
+        return moves[cursor[0] - 1]?moves[cursor[0] - 1]:false;
     } else {
         if (moves[cursor[0] - 1]["rav"]) {
-            return obj2Node(moves[cursor.shift() - 1]["rav"][cursor.shift() - 1], cursor);
+            // var tempRav = moves[cursor.shift() - 1]["rav"];
+            // return (tempRav && tempRav[cursor.shift()-1,cursor]);
+             return obj2Node(moves[cursor.shift() - 1]["rav"][cursor.shift() - 1], cursor);
         } else {
-            return obj2Node(moves[cursor.shift() - 1], cursor);
+            // return obj2Node(moves[cursor.shift() - 1], cursor);
+            return false;
         }
     }
 }

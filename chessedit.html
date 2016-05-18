@@ -359,7 +359,6 @@ $(document).ready(function() {
         	'bsc':$('#bsc'),
         	'blc':$('#blc')
         });
-
     });
 
     $("#flipPosition,#boardFlip2").click(function(event) {
@@ -444,8 +443,8 @@ $(document).ready(function() {
 
     $("textarea.txtComment").bind("focusout", addComment);
 
-    function getOddMove(moveNum) {
-        return moveNum % 2 ? (moveNum + 1) / 2 : 0;
+	    function getOddMove(moveNum) {
+	        return moveNum % 2 ? (moveNum + 1) / 2 : 0;
 
     }
 
@@ -592,14 +591,6 @@ $(document).ready(function() {
 		}
     });
 
-    // Position Color End
-    // Chessborad & Chess.js
-
-
-
-
-
-
 
 	function chessRefresh(chess,fen){
 		chess.load(fen);
@@ -678,18 +669,18 @@ $(document).ready(function() {
 	}
 
     function stepBack() {
-      var cur;
-      if (!(cur =curBackward(moves,cursorCur)) || cur[0]==0) {
-		cursorCur = [0];
-        pgnHilightChange($aa,cursorCur,0);
-        boardRefresh(board,$aa,moves,[0]);
+      	var cur;
+      	if (!(cur =curBackward(moves,cursorCur)) || cur[0]==0) {
+			cursorCur = [0];
+        	pgnHilightChange($aa,cursorCur,0);
+        	boardRefresh(board,$aa,moves,[0]);
+			chessRefresh(chess,obj2Fen(moves,cursorCur));
+         	return false;
+      	}
+      	cursorCur = cur;
+      	boardRefresh(board,$aa,moves,cursorCur);
 		chessRefresh(chess,obj2Fen(moves,cursorCur));
-         return false;
-      }
-      cursorCur = cur;
-      boardRefresh(board,$aa,moves,cursorCur);
-	chessRefresh(chess,obj2Fen(moves,cursorCur));
-     pgnHilightChange($aa,cursorCur,1);
+     	pgnHilightChange($aa,cursorCur,1);
     };
 
     function startPosition() {
